@@ -1,0 +1,160 @@
+Dans le royaume d'Etherielle, le héros se porte volontaire pour sauver la princesse Elara, enlevée par le redoutable dragon Borys et retenue prisonnière dans un sombre donjon. Affrontant des pièges et la féroce créature, Le héros parviendra-t-il à vaincre le dragon et libère la princesse, ramenant ainsi la paix dans le royaume. 
+
+C'est moi Gerard qui va vous racontez son histoire , l'histoire de ... 
+
+un grand... [Barbar (1) | Mage (2) | paladin (3)|voleur(4)]
+
+notre heros commence son aventure dans une grande salle , de grand pillier s'eleve devant lui jusqu'au plafond, l'entrée du dongeon derrier lui suffit a eclairé la salle revelant devant lui une ouverture sur le mur de la piece cette ouverture mene dans un long couloir [2], a droite se trouve une porte en bois ornée de bande metalique [3] , a gauche une porte entrouverte une legere lumiere sans echape 
+
+l'histoire de 
+
+
+========================combat===========================
+
+vous avez infliger 
+
+le monstre vous inflige
+
+degats
+
+le monstre vous prend par surprise
+
+vous prenez le monstre par surprise
+
+
+vous etes un barbare, les barbare ne se soigne pas , se soigner c'est pour les faible ! (+1 PV)
+
+vous lancer un sort de soin (+ 8PV)
+
+vous utiliser un peut de votre magie pour vous soigné (+6 PV)
+
+vous parvenez avec un morceaux de tissu a pensé vos plaie (+ 4 PV)
+
+vous etes dejas a votre maximum
+
+le squelette vous attaque
+
+l'araigne vous attaque
+
+l'araigne vous lance une toile dessu
+
+l'araigne ne fait rien
+
+le slime vous attaque
+
+le monstre vous attaque 
+
+que voulez vous faire ?
+
+Reussite
+Echec
+===================action voleur=====================
+
+=====================================================
+1-attaque                   2-disparaitre
+3-soin                      4-defendre  
+=====================================================
+
+vous planter votre dague dans le monstre !
+
+vous tenter de disparaitre dans les ombres
+
+vous parvenez a disparaitre dans les ombres au prochain tour celerité + attaque x2
+
+vous n'etes pas parvenu a disparaitre
+
+vous vous soignez
+
+vous vous preparé pour l'attaque 
+
+===================action barbare=====================
+
+=====================================================
+1-attaque                   2-crie de guerre
+3-soin                      4-defendre  
+=====================================================
+
+vous donner un grand coup de hache dans le monstre !
+
+vous poussez un grand cri de guerre 
+
+Le crie de guerre vous emplie de rage et fait peur a votre enemie (defense + force X2 pendant un tour)
+
+le crie n'as aucun effet 
+
+vous vous soignez
+
+vous vous preparé pour l'attaque 
+
+===================action Mage=====================
+
+=====================================================
+1-attaque                   2-Foudre 
+3-soin                      4-defendre  
+=====================================================
+
+vous envoyer quelque projectiles magique sur votre enemie !
+
+vous tenter d'invoquer la foudre 
+
+la foudre s'abbat sur votre enemie (6 degats)
+
+vous ne parvenez pas a lancer votre sort
+
+vous vous soignez
+
+vous vous preparé pour l'attaque 
+
+
+===================action paladin=====================
+
+=====================================================
+1-attaque                   2-priere 
+3-soin                      4-defendre  
+=====================================================
+
+vous donenr un coup d'epee a votre enemie !
+
+vous levez votre epee au ciel en resitant une priere 
+
+la un cercle de lumiere s'illumine sous l'enemie (celerité enemie + force enemie /2 pendant un tour)
+
+mais rien de ne passe
+
+vous vous soignez
+
+vous vous preparé pour l'attaque 
+
+
+=====================================================
+vos PV:
+PV du monstre:
+=====================================================
+
+monstre vaincue
+
+joueur vaincue
+
+===========================erreurs==================
+
+erreur
+
+erreur ID enemie
+
+erreur ID Classe
+
+===========================DEBUT======================
+1- Continuer
+2- Nouvelle Partie
+3- Quitter
+
+===========================CARTE======================
+
+#########
+#        #      ############//############################
+# Piece  #      #                  #         #           #
+#   2    #######                   ###########           #
+#        /     /        Hall       /         /  Piece 1  #
+#        #######                   ###########           #
+#########       #                  #         #           #
+              ##########################################
