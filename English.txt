@@ -1,0 +1,160 @@
+In the kingdom of Etherielle, the hero volunteers to save Princess Elara, kidnapped by the dreaded dragon Borys and held captive in a dark dungeon. Facing traps and the fierce creature, will the hero succeed in defeating the dragon and liberating the princess, thus restoring peace to the kingdom?
+
+It's me, Gerard, who will tell you his story, the story of...
+
+a great... [Barbarian (1) | Mage (2) | Paladin (3) | Thief (4)]
+
+Our hero begins his adventure in a large hall, tall pillars rising in front of him to the ceiling. The entrance of the dungeon behind him is enough to illuminate the room, revealing an opening in the wall leading to a long corridor [2]. To the right is a wooden door adorned with metal bands [3], and to the left is a slightly ajar door emitting a faint light with no escape.
+
+the story of 
+
+
+========================combat===========================
+
+You inflicted
+
+The monster inflicts 
+
+damage.
+
+The monster takes you by surprise.
+
+You take the monster by surprise.
+
+
+You are a barbarian, barbarians do not heal. Healing is for the weak! (+1 HP)
+
+You cast a healing spell (+8 HP)
+
+You use a bit of your magic to heal yourself (+6 PV)
+
+You manage to patch up your wounds with a piece of cloth (+4 PV)
+
+Your already at your best 
+
+The skeleton attacks you.
+
+The spider attacks you.
+
+The spider shoot a web on you.
+
+The spider does nothing.
+
+The slime attacks you.
+
+The monster attacks you.
+
+What do you want to do?
+
+succeed
+failed
+===================thief's action=====================
+
+======================================================
+1-attack                2-disappear
+3-heal                  4-defend
+======================================================
+
+You stab your dagger into the monster!
+
+You try to disappear into the shadows.
+
+You manage to disappear into the shadows, next turn, celerity + attack x2.
+
+You fail to disappear.
+
+You heal yourself.
+
+You prepare for the attack.
+
+===================barbarian's action=====================
+
+=====================================================
+1-attack                2-war scream
+3-heal                  4-defend
+=====================================================
+
+You deliver a powerful blow with your axe!
+
+You let out a mighty war cry.
+
+The war cry fills you with rage and frightens your enemy (defense + strength x2 for one turn).
+
+The cry has no effect.
+
+You heal yourself.
+
+You prepare for the attack.
+
+===================mage's action=====================
+
+=====================================================
+1-attack                2-lightning
+3-heal                  4-defend
+=====================================================
+
+You send magical projectiles at your enemy!
+
+You try to summon lightning.
+
+Lightning strikes your enemy (6 damage).
+
+You fail to cast your spell.
+
+You heal yourself.
+
+You prepare for the attack.
+
+
+===================paladin's action=====================
+
+=====================================================
+1-attack              2-prayer
+3-heal                4-defend
+=====================================================
+
+You strike your enemy with a sword blow!
+
+You raise your sword to the sky while uttering a prayer.
+
+A circle of light illuminates under the enemy (enemy's celerity + enemy's strength /2 for one turn).
+
+But nothing happens.
+
+You heal yourself.
+
+You prepare for the attack.
+
+
+=====================================================
+Your HP:
+Monster's HP:
+=====================================================
+
+Monster defeated
+
+Player defeated
+
+===========================errors==================
+
+Error
+
+Enemy ID error
+
+Class ID error
+
+===========================BEGIN======================
+1- Continue
+2- New Game
+3- Quit
+
+===========================MAP=======================
+
+#########
+#        #      ############//############################
+# Room  #      #                  #         #           #
+#   2    #######                   ###########           #
+#        /     /        Hall       /         /  Room 1  #
+#        #######                   ###########           #
+#########       #                  #         #           #
+              ##########################################
