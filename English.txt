@@ -1,6 +1,6 @@
 In the kingdom of Etherielle, the hero volunteers to save Princess Elara, kidnapped by the dreaded dragon Borys and held captive in a dark dungeon. Facing traps and the fierce creature, will the hero succeed in defeating the dragon and liberating the princess, thus restoring peace to the kingdom?
 
-It's me, Gerard, who will tell you his story, the story of...
+It's me, Gerard, who will tell you his story, the story of... [enter your name]
 
 a great... [Barbarian (1) | Mage (2) | Paladin (3) | Thief (4)]
 
@@ -17,29 +17,29 @@ The monster inflicts
 
 damage.
 
-The monster takes you by surprise.
+The monster as the advantage
 
-You take the monster by surprise.
+You have the advantage
 
 
 You are a barbarian, barbarians do not heal. Healing is for the weak! (+1 HP)
 
-You cast a healing spell (+8 HP)
+You cast a healing spell (+9 HP)
 
 You use a bit of your magic to heal yourself (+6 PV)
 
 You manage to patch up your wounds with a piece of cloth (+4 PV)
 
 Your already at your best 
-
+Bone fragments start moving on the ground and suddenly rush towards the skeleton; some of them cut you in passing, causing you to lose 1 HP (skeleton - 7 HP).
 The skeleton attacks you.
+The skeleton throw cutting bone fragments on the ground, making it difficult to move without getting hurt. You lose 2 HP and your celerity is halved for 1 turn
+The spider attacks you. 🕷️
 
-The spider attacks you.
-
-The spider shoot a web on you.
-
+The spider shoot a web on you. 🕸️
+the skeleton does nothing.
 The spider does nothing.
-
+The slime does nothing.
 The slime attacks you.
 
 The monster attacks you.
@@ -78,7 +78,7 @@ You deliver a powerful blow with your axe!
 
 You let out a mighty war cry.
 
-The war cry fills you with rage and frightens your enemy (defense + strength x2 for one turn).
+The war scream fills you with rage and frightens your enemy (defense + strength x2 for one turn).
 
 The cry has no effect.
 
@@ -157,4 +157,4 @@ Class ID error
 #        /     /        Hall       /         /  Room 1  #
 #        #######                   ###########           #
 #########       #                  #         #           #
-              ##########################################
+                ##########################################
