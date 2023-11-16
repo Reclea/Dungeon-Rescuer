@@ -1,10 +1,10 @@
-Dans le royaume d'Etherielle, le héros se porte volontaire pour sauver la princesse Elara, enlevée par le redoutable dragon Borys et retenue prisonnière dans un sombre donjon. Affrontant des pièges et la féroce créature, Le héros parviendra-t-il à vaincre le dragon et libère la princesse, ramenant ainsi la paix dans le royaume. 
+Dans le royaume d'Etherielle, le heros se porte volontaire pour sauver la princesse Elara, enlevee par le redoutable dragon Borys et retenue prisonnière dans un sombre donjon. Affrontant des pièges et la feroce creature, Le heros parviendra-t-il a vaincre le dragon et libère la princesse, ramenant ainsi la paix dans le royaume. 
 
-C'est moi Gerard qui va vous racontez son histoire , l'histoire de ... 
+C'est moi Gerard qui va vous racontez son histoire , l'histoire de ... [rentree votre nom]
 
-un grand... [Barbar (1) | Mage (2) | paladin (3)|voleur(4)]
+un grand... [Barbar (1) | Mage (2) | paladin (3)|voleur(4)] 
 
-notre heros commence son aventure dans une grande salle , de grand pillier s'eleve devant lui jusqu'au plafond, l'entrée du dongeon derrier lui suffit a eclairé la salle revelant devant lui une ouverture sur le mur de la piece cette ouverture mene dans un long couloir [2], a droite se trouve une porte en bois ornée de bande metalique [3] , a gauche une porte entrouverte une legere lumiere sans echape 
+notre heros commence son aventure dans une grande salle , de grand pillier s'eleve devant lui jusqu'au plafond, l'entree du dongeon derrier lui suffit a eclaire la salle revelant devant lui une ouverture sur le mur de la piece cette ouverture mene dans un long couloir [2], a droite se trouve une porte en bois ornee de bande metalique [3] , a gauche une porte entrouverte une legere lumiere sans echape 
 
 l'histoire de 
 
@@ -17,29 +17,29 @@ le monstre vous inflige
 
 degats
 
-le monstre vous prend par surprise
+le monstre a l'avantage
 
-vous prenez le monstre par surprise
+vous avez l'avantage
 
 
 vous etes un barbare, les barbare ne se soigne pas , se soigner c'est pour les faible ! (+1 PV)
 
-vous lancer un sort de soin (+ 8PV)
+vous lancer un sort de soin (+ 9PV)
 
-vous utiliser un peut de votre magie pour vous soigné (+6 PV)
+vous utiliser un peut de votre magie pour vous soigne (+6 PV)
 
-vous parvenez avec un morceaux de tissu a pensé vos plaie (+ 4 PV)
+vous parvenez avec un morceaux de tissu a pense vos plaie (+ 4 PV)
 
 vous etes dejas a votre maximum
-
+des morceaux d'os se mettent a bouger au sol et foncent soudaint vers le squelette quelques un vous coupe au passage vous perdez 1 PV (squelette + 7 PV) 
 le squelette vous attaque
+le squelette envoie des morceaux d'os coupant au sol cela devien difficile de se deplacer sans se blesse , vous perder 2 PV et celerite/2 pendant 1 tour
+l'araigne vous attaque 🕷️
 
-l'araigne vous attaque
-
-l'araigne vous lance une toile dessu
-
+l'araigne vous lance une toile dessu 🕸️
+le squelette ne fait rien 
 l'araigne ne fait rien
-
+le slime ne fait rien 
 le slime vous attaque
 
 le monstre vous attaque 
@@ -59,13 +59,13 @@ vous planter votre dague dans le monstre !
 
 vous tenter de disparaitre dans les ombres
 
-vous parvenez a disparaitre dans les ombres au prochain tour celerité + attaque x2
+vous parvenez a disparaitre dans les ombres au prochain tour celerite + attaque x2
 
 vous n'etes pas parvenu a disparaitre
 
 vous vous soignez
 
-vous vous preparé pour l'attaque 
+vous vous prepare pour l'attaque 
 
 ===================action barbare=====================
 
@@ -84,7 +84,7 @@ le crie n'as aucun effet
 
 vous vous soignez
 
-vous vous preparé pour l'attaque 
+vous vous prepare pour l'attaque 
 
 ===================action Mage=====================
 
@@ -103,7 +103,7 @@ vous ne parvenez pas a lancer votre sort
 
 vous vous soignez
 
-vous vous preparé pour l'attaque 
+vous vous prepare pour l'attaque 
 
 
 ===================action paladin=====================
@@ -117,13 +117,13 @@ vous donenr un coup d'epee a votre enemie !
 
 vous levez votre epee au ciel en resitant une priere 
 
-la un cercle de lumiere s'illumine sous l'enemie (celerité enemie + force enemie /2 pendant un tour)
+la un cercle de lumiere s'illumine sous l'enemie (celerite enemie + force enemie /2 pendant un tour)
 
 mais rien de ne passe
 
 vous vous soignez
 
-vous vous preparé pour l'attaque 
+vous vous prepare pour l'attaque 
 
 
 =====================================================
@@ -157,4 +157,4 @@ erreur ID Classe
 #        /     /        Hall       /         /  Piece 1  #
 #        #######                   ###########           #
 #########       #                  #         #           #
-              ##########################################
+                ##########################################
