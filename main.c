@@ -7,10 +7,8 @@
 
 const char *SaveGame = "SaveGame.txt";
 const char *PlayerInfo = "PlayerInfo.txt";
-const char *Francais = "Francais.txt";
-const char *English = "English.txt";
-const char *Carte = "Carte.txt";
-const char *Map = "Map.txt";
+const char *Histoire = "Histoire.txt";
+const char *Story = "Story.txt";
 char *language;
 const int des = 21;
 
@@ -21,7 +19,7 @@ char Nom_j[20];
 
 int nbMobs,room,langue;
 
-
+//declaration of the Enemie structure
 typedef struct 
 {
         int ID_Enemie;
@@ -30,7 +28,7 @@ typedef struct
         int ATK_Enemie;
         int Celerite_Enemie;
 }Enemie;
-
+//declaration of the classe structure
 typedef struct 
 {
         int ID_classe;
@@ -41,7 +39,7 @@ typedef struct
         int Celerite_classe;
         int Mana_classe; 
 }classe;
-
+//read a specifique line of the TXT file 
 void lecture(int line)
 {
         FILE *file = fopen(Lfile, "r");
@@ -49,13 +47,13 @@ void lecture(int line)
         if (file != NULL)
         {
                 int currentLine = 1;
-                int currentChar1;
+                int currentChar;
 
                 while (currentLine < line)
                 {
-                        currentChar1 = fgetc(file);
+                        currentChar = fgetc(file);
 
-                        if (currentChar1 == '\n')
+                        if (currentChar == '\n')
                         {
                                 currentLine++;
                         }
@@ -63,9 +61,9 @@ void lecture(int line)
 
                 do
                 {
-                        currentChar1 = fgetc(file);
-                        printf("%c", currentChar1);
-                } while (currentChar1 != '\n' && currentChar1 != EOF);
+                        currentChar = fgetc(file);
+                        printf("%c", currentChar);
+                } while (currentChar != '\n' && currentChar != EOF);
 
                 fclose(file);
         }
@@ -73,19 +71,18 @@ void lecture(int line)
         {
                 printf("\n");
         }
-        return; 
+        return;
 }
-
+//insert statistique of a class into the player variable 
 classe choix_classes(int ID_classe){
 switch (ID_classe)
-{                        
-
-case 1 :
+{
+case 1 : 
         classe Barbare  ; 
                 Barbare.ID_classe = 1;
                 Barbare.Celerite_classe = 3;
                 Barbare.DEF_classe = 2;
-                Barbare.ATK_classe = 4;
+                Barbare.ATK_classe = 3;
                 Barbare.PV_classe = 60;
                 Barbare.PVmax_classe = 60;
                 Barbare.Mana_classe = 0;
@@ -136,8 +133,8 @@ default:
 }
               
 }
-// Check if the files are available
 
+//insert statistique of each Enemie into they respective variable
 Enemie setup_Enemie(int ID_Enemie){
 switch (ID_Enemie)
 {
@@ -177,14 +174,14 @@ default:
               
 }
 
-
+// Check if the files are available
 void verif_fichier()
 {
         // open the file
         FILE *in_file = fopen(PlayerInfo, "r");
         FILE *in_save = fopen(SaveGame, "r");
-        FILE *in_histoire = fopen(Francais, "r");
-        FILE *in_story = fopen(English, "r");
+        FILE *in_histoire = fopen(Histoire, "r");
+        FILE *in_story = fopen(Story, "r");
         FILE *in_carte = fopen(Carte, "r");
         FILE *in_map = fopen(Map, "r");
 
@@ -210,6 +207,8 @@ void verif_fichier()
 }
 
 /*=========================combats=====================*/
+
+//roll a dice to see if the action is a success
 int lancer(int difficulter){
         int resultat = rand() % des ;
         if (resultat >= difficulter)
@@ -226,7 +225,7 @@ int lancer(int difficulter){
         
 }
 
-
+//description of each action depending of the class of the player
 int tour_j(classe joueur){
         printf("que voulez vous faire ?:\n");
         int choix = 0,
@@ -426,46 +425,63 @@ int tour_j(classe joueur){
         
 }
 
-
+//Enemie choose what he do depending on player stats
 int tour_e(Enemie type,classe joueur,int j_attaquable,int j_ralenti){
        switch (type.ID_Enemie)
        {
-       case 1:
+        case 1:
                 if (joueur.PV_classe - type.ATK_Enemie <= 0 && j_attaquable == 0 )
                 {
                         lecture(35);
                         
+                        return 1; //attaque basic
+                }
+                else if (type.PV_Enemie <= type.PV_Enemie/3 && rand()% des >= 19 )
+                {       lecture(34);
+                        return 4; //soin special squelette
+                }
+                else if (joueur.Celerite_classe/2 <= type.Celerite_Enemie/2 && j_ralenti == 0 && rand()% des >= 14)
+                {       lecture(36);
+                        return 5; //attaque special squelette
+                }
+                else if (j_attaquable == 0)
+                {
+                        lecture(35);
                         return 1;
                 }
+                else if (j_attaquable == 0)
+                {
+                        lecture(40);
+                }
+                
+                
+
+                
         break;
-       case 2:
+        case 2:
                 if (joueur.PV_classe - type.ATK_Enemie <= 0 && j_attaquable == 0 )
                 {
                         lecture(37);
 
-                        return 1;
+                        return 1; //attaque basic
                 }
                 else if (type.PV_Enemie <= type.PV_Enemie/3 && rand()% des >= 15 && j_attaquable == 0 && j_ralenti == 0&& joueur.Celerite_classe/2 <= type.Celerite_Enemie/2)
                 {
                         lecture(39);
                         
-                        return 3;       
+                        return 3; //attaque special araignee      
                 }
                 else if (rand()% des >= 17 && j_attaquable == 0 && j_ralenti == 0 && joueur.Celerite_classe/2 <= type.Celerite_Enemie/2)
                 {
                         lecture(39);
-                        return 3;
+                        return 3; //attaque special araignee
                 }
                 else if (j_attaquable == 0)
                 {
                         lecture(37);
 
-                        return 1;  
-                }
-                else{
-                        lecture(41);
-                        return 0;
-                }      
+                        return 1;  //attaque basic
+                }    
         break;
        case 3:
                 if (joueur.PV_classe - type.ATK_Enemie <= 0 && j_attaquable == 0 )
@@ -483,6 +499,7 @@ int tour_e(Enemie type,classe joueur,int j_attaquable,int j_ralenti){
        } 
 }
 
+//describe the healing action of the classe played by the player then return the value of healing
 int soin(classe joueur){
         if (joueur.PV_classe < joueur.PVmax_classe)
         {
@@ -494,7 +511,7 @@ int soin(classe joueur){
                         break;
                 case 2:
                         lecture(27);
-                        return 7;
+                        return 9;
                         break;
                 case 3:
                         lecture(29);
@@ -519,10 +536,10 @@ int soin(classe joueur){
         
 }
 
+//one big function for the combat, the one who start the combat depend on the celerity,the combat loop until one of them die 
 classe combat(int nbMobs,Enemie type,classe joueur){
         
-
-        lecture(37);
+        
         type.PV_Enemie = type.PVmax_Enemie ;
         int i = 0,
             resultat = 0,
@@ -543,6 +560,8 @@ classe combat(int nbMobs,Enemie type,classe joueur){
         if (celerite_e>celerite_j)
         {
                 do{
+                       
+                        
                         if (celerite_e/2 >= celerite_j)
                         {
                         /*========================advantage monster========================================*/
@@ -560,15 +579,25 @@ classe combat(int nbMobs,Enemie type,classe joueur){
                                         multiplicateur_e = 1;
                                         break;
                                 case 3:
-                                        j_ralenti = 2 ;
+                                        j_ralenti = 3 ;
                                         celerite_j = celerite_j / 2 ;
 
+                                        break;
+                                case 4:
+                                        type.PV_Enemie = type.PV_Enemie + 7;
+                                        break;
+                                case 5:
+                                        j_ralenti = 2;
+                                        joueur.PV_classe = joueur.PV_classe - 2;
                                         break;
                                 default:
                                         lecture(40);
                                         break;
                                 }
-                                sleep(5);  
+                                sleep(4);
+                                
+                                
+                                
                         }
                         else if (celerite_j/2 >= celerite_e)
                         {
@@ -623,7 +652,7 @@ classe combat(int nbMobs,Enemie type,classe joueur){
                                         lecture(32);
                                         break;
                                 }
-                                sleep(5);
+                                sleep(4);
                                 
                                 
                                 
@@ -643,15 +672,22 @@ classe combat(int nbMobs,Enemie type,classe joueur){
                                         lecture(18);
                                         break;
                                 case 3:
-                                        j_ralenti = 2;
+                                        j_ralenti = 3;
                                         celerite_j = celerite_j / 2 ;
 
+                                        break;
+                                case 4:
+                                        type.PV_Enemie = type.PV_Enemie + 7;
+                                        break;
+                                case 5:
+                                        j_ralenti = 2;
+                                        joueur.PV_classe = joueur.PV_classe - 2;
                                         break;
                                 default:
                                         printf("erreur");
                                         break;
                                 }
-                                sleep(5);
+                                sleep(4);
                                 
                         
                         
@@ -707,7 +743,7 @@ classe combat(int nbMobs,Enemie type,classe joueur){
                                         lecture(32);
                                         break;
                                 }
-                                sleep(5);
+                                sleep(4);
                                 
                                 
                                 
@@ -764,7 +800,7 @@ classe combat(int nbMobs,Enemie type,classe joueur){
                                         }
                                         
                                 }
-                                sleep(5);
+                                sleep(4);
                                 
                                 
 
@@ -833,7 +869,7 @@ classe combat(int nbMobs,Enemie type,classe joueur){
                                         lecture(32);
                                         break;
                                 }
-                                sleep(5);
+                                sleep(4);
                                 
                                 
                                 
@@ -854,15 +890,22 @@ classe combat(int nbMobs,Enemie type,classe joueur){
                                         multiplicateur_e = 1;
                                         break;
                                 case 3:
-                                        j_ralenti = 2 ;
+                                        j_ralenti = 3 ;
                                         celerite_j = celerite_j / 2 ;
 
+                                        break;
+                                case 4:
+                                        type.PV_Enemie = type.PV_Enemie + 7;
+                                        break;
+                                case 5:
+                                        j_ralenti = 2;
+                                        joueur.PV_classe = joueur.PV_classe - 2;
                                         break;
                                 default:
                                         lecture(40);
                                         break;
                                 }
-                                sleep(5);
+                                sleep(4);
                                 
                                 
                                 
@@ -927,7 +970,7 @@ classe combat(int nbMobs,Enemie type,classe joueur){
                                         lecture(32);
                                         break;
                                 }
-                                sleep(5);
+                                sleep(4);
                         
 
                         /*========================Monster Turn========================================*/
@@ -943,15 +986,22 @@ classe combat(int nbMobs,Enemie type,classe joueur){
                                         lecture(18);
                                         break;
                                 case 3:
-                                        j_ralenti = 2;
+                                        j_ralenti = 3;
                                         celerite_j = celerite_j / 2 ;
 
+                                        break;
+                                case 4:
+                                        type.PV_Enemie = type.PV_Enemie + 7;
+                                        break;
+                                case 5:
+                                        j_ralenti = 2;
+                                        joueur.PV_classe = joueur.PV_classe - 2;
                                         break;
                                 default:
                                         printf("erreur");
                                         break;
                                 }
-                                sleep(5);
+                                sleep(4);
                         
                                 
                                 
@@ -1007,7 +1057,7 @@ classe combat(int nbMobs,Enemie type,classe joueur){
                                         }
                                         
                                 }
-                                sleep(5);
+                                sleep(4);
                                 
 
                                 resultat=0;
@@ -1026,6 +1076,10 @@ classe combat(int nbMobs,Enemie type,classe joueur){
                 printf("joueur vaincue\n");
                 return (joueur);
         }
+        printf("fin de la demo merci d'avoir jouer");
+        printf("end of the demo thank for playing ");
+        sleep(10);
+        exit(1);
         
         
 
@@ -1033,6 +1087,8 @@ classe combat(int nbMobs,Enemie type,classe joueur){
 }
 
 /*======================================================*/
+
+
 // Look and provide the player's position
 char Position(int line)
 {
@@ -1076,6 +1132,7 @@ char Position(int line)
     }
 }
 
+//provide the player a chose to let him choose were to go next also as a description of the room
 void chooseDirection(classe joueur,Enemie araignee,Enemie squelette,Enemie slime)
 {
         char resultat = Position(1);
@@ -1085,7 +1142,7 @@ void chooseDirection(classe joueur,Enemie araignee,Enemie squelette,Enemie slime
         if (resultat == 'H')
         {
 
-                if (strcmp(Lfile, "Francais.txt") == 0)
+                if (strcmp(Lfile, "Histoire.txt") == 0)
                 {
                         printf("\n---------------------------------\n");
                         printf("Vous etes dans le Hall\n");
@@ -1114,7 +1171,7 @@ void chooseDirection(classe joueur,Enemie araignee,Enemie squelette,Enemie slime
                         break;
                 case 2:
 
-                        if (strcmp(Lfile, "Francais.txt") == 0)
+                        if (strcmp(Lfile, "Histoire.txt") == 0)
                         {
                                 printf("La porte est fermé\n");
                                 chooseDirection(joueur,araignee,squelette,slime);
@@ -1142,11 +1199,11 @@ void chooseDirection(classe joueur,Enemie araignee,Enemie squelette,Enemie slime
         }
         else if (resultat == 'C')
         {
-                if (strcmp(Lfile, "Francais.txt") == 0)
+                if (strcmp(Lfile, "Histoire.txt") == 0)
                 {
                         printf("\n---------------------------------\n");
                         printf("Vous etes dans la Piece 1\n");
-                        combat(1,araignee,joueur);
+                        combat(1,squelette,joueur);
                         printf("\n---------------------------------\n");
                         printf("Vous etes dans la Piece 1\n");
                         printf("Que voulez-vous faire ?\n");
@@ -1158,7 +1215,7 @@ void chooseDirection(classe joueur,Enemie araignee,Enemie squelette,Enemie slime
                 {
                         printf("\n---------------------------------\n");
                         printf("You are in Room 1\n");
-                        combat(1,araignee,joueur);
+                        combat(1,squelette,joueur);
                         printf("\n---------------------------------\n");
                         printf("You are in Room 1\n");
                         printf("What do you want to do?\n");
@@ -1193,18 +1250,17 @@ void chooseDirection(classe joueur,Enemie araignee,Enemie squelette,Enemie slime
 void afficheMap(classe joueur,Enemie araignee,Enemie squelette,Enemie slime)
 {
         char texte;
+        if (strcmp(Lfile, "Histoire.txt") == 0)
+        {
                 for (int i = 153; i <= 160; i++)
                 {
                         lecture(i);
                 }
                 printf("\n");
                 sleep(3);
-        
+        }
         chooseDirection(joueur,araignee,squelette,slime);
 }
-// Choose where the player should go
-
-// Read the file
 
 // choose langue
 void choix_langue()
@@ -1214,8 +1270,6 @@ void choix_langue()
         FILE *Room = fopen(PlayerInfo, "w");
         fprintf(Room,"H");
         fclose(Room);
-
-
         while (loop == 2)
         {
                 // Affichage de "Francais (1)" en bleu
@@ -1230,7 +1284,7 @@ void choix_langue()
                 scanf(" %c", &choix);
                 if (choix == '1')
                 {
-                        strcpy(Lfile, "Francais.txt");
+                        strcpy(Lfile, "Histoire.txt");
                         FILE *file = fopen(SaveGame, "w");
                         fprintf(file, "F"); // Écrit la chaîne Lfile dans le fichier
                         fclose(file);
@@ -1239,7 +1293,7 @@ void choix_langue()
                 }
                 else if (choix == '2')
                 {
-                        strcpy(Lfile, "English.txt");
+                        strcpy(Lfile, "Story.txt");
                         FILE *file = fopen(SaveGame, "w");
                         fprintf(file, "E"); // Écrit la chaîne Lfile dans le fichier
                         fclose(file);
@@ -1269,11 +1323,11 @@ void Start(classe classe_joueur,Enemie araignee ,Enemie squelette,Enemie slime)
                 switch (c)
                 {
                 case 'F':
-                        strcpy(Lfile, "Francais.txt");
+                        strcpy(Lfile, "Histoire.txt");
                         validCharacterFound = 1;
                         break;
                 case 'E':
-                        strcpy(Lfile, "English.txt");
+                        strcpy(Lfile, "Story.txt");
                         validCharacterFound = 1;
                         break;
                 default:
@@ -1283,7 +1337,7 @@ void Start(classe classe_joueur,Enemie araignee ,Enemie squelette,Enemie slime)
 
                 if (validCharacterFound == 1)
                 {
-                        if (strcmp(Lfile, "Francais.txt") == 0)
+                        if (strcmp(Lfile, "Histoire.txt") == 0)
                         {
                                 for (int i = 147; i <= 149; i++)
                                 {
@@ -1291,7 +1345,7 @@ void Start(classe classe_joueur,Enemie araignee ,Enemie squelette,Enemie slime)
                                         printf("\n");
                                 }
                         }
-                        else if (strcmp(Lfile, "English.txt") == 0)
+                        else if (strcmp(Lfile, "Story.txt") == 0)
                         {
                                 for (int i = 147; i <= 149; i++)
                                 {
@@ -1337,6 +1391,8 @@ void Start(classe classe_joueur,Enemie araignee ,Enemie squelette,Enemie slime)
 
         fclose(file);
 }
+
+//main
 int main(int argc, char *argv[])
 {
         Enemie araignee,squelette,slime ;
