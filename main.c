@@ -40,6 +40,35 @@ typedef struct
         int Mana_classe; 
 }classe;
 //read a specifique line of the TXT file 
+void ecriture(int line,char message){
+        FILE *file = fopen(SaveGame,"r+");
+                if (file != NULL)
+        {
+                int currentLine = 1;
+                int currentChar1;
+                long offset = 0;
+
+                while (currentLine < line)
+                {
+                        currentChar1 = fgetc(file);
+
+                        if (currentChar1 == '\n')
+                        {
+                                currentLine++;
+                                offset = ftell(file);
+                        }
+                        
+                }       fseek(file, offset, SEEK_SET);
+                        fprintf(file,"%c", message);
+
+                fclose(file);
+        }
+        else
+        {
+                printf("\n");
+        }
+        return; 
+}
 void lecture(int line)
 {
         FILE *file = fopen(Lfile, "r");
