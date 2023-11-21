@@ -1310,14 +1310,17 @@ char Position(int line)
 //provide the player a chose to let him choose were to go next also as a description of the room
 void chooseDirection(classe joueur,Enemie araignee,Enemie squelette,Enemie slime)
 {
-        char resultat = Position(1);
-
+        FILE *file = fopen("SaveGame.txt", "r");
+        
+        char resultat = Position(3);
         int choixJoueur;
         int action;
+while((resultat = fgetc(file)))
+{
         if (resultat == 'H')
         {
 
-                if (strcmp(Lfile, "Histoire.txt") == 0)
+                if (strcmp(Lfile, "Francais.txt") == 0)
                 {
                         printf("\n---------------------------------\n");
                         printf("Vous etes dans le Hall\n");
@@ -1337,6 +1340,7 @@ void chooseDirection(classe joueur,Enemie araignee,Enemie squelette,Enemie slime
                         printf("3- Go to left\n");
                         printf("---------------------------------\n");
                 }
+
                 scanf("%d", &action);
 
                 switch (action)
@@ -1346,7 +1350,7 @@ void chooseDirection(classe joueur,Enemie araignee,Enemie squelette,Enemie slime
                         break;
                 case 2:
 
-                        if (strcmp(Lfile, "Histoire.txt") == 0)
+                        if (strcmp(Lfile, "Francais.txt") == 0)
                         {
                                 printf("La porte est fermé\n");
                                 chooseDirection(joueur,araignee,squelette,slime);
@@ -1359,13 +1363,8 @@ void chooseDirection(classe joueur,Enemie araignee,Enemie squelette,Enemie slime
                         break;
 
                 case 3:
-                        FILE *file = fopen(PlayerInfo, "w");
-                        for (int i = 1; i < 5; ++i)
-                        {
-                                fprintf(file, "");
-                        }
-                        fprintf(file, "C\n");
-                        fclose(file);
+
+                        ecriture(1,'C');
                         chooseDirection(joueur,araignee,squelette,slime);
                         break;
                 default:
@@ -1374,11 +1373,11 @@ void chooseDirection(classe joueur,Enemie araignee,Enemie squelette,Enemie slime
         }
         else if (resultat == 'C')
         {
-                if (strcmp(Lfile, "Histoire.txt") == 0)
+                if (strcmp(Lfile, "Francais.txt") == 0)
                 {
                         printf("\n---------------------------------\n");
                         printf("Vous etes dans la Piece 1\n");
-                        combat(1,slime,joueur);
+                        combat(1,araignee,joueur);
                         printf("\n---------------------------------\n");
                         printf("Vous etes dans la Piece 1\n");
                         printf("Que voulez-vous faire ?\n");
@@ -1390,7 +1389,7 @@ void chooseDirection(classe joueur,Enemie araignee,Enemie squelette,Enemie slime
                 {
                         printf("\n---------------------------------\n");
                         printf("You are in Room 1\n");
-                        combat(1,slime,joueur);
+                        combat(1,araignee,joueur);
                         printf("\n---------------------------------\n");
                         printf("You are in Room 1\n");
                         printf("What do you want to do?\n");
@@ -1406,18 +1405,13 @@ void chooseDirection(classe joueur,Enemie araignee,Enemie squelette,Enemie slime
                         afficheMap(joueur,araignee,squelette,slime);
                         break;
                 case 2:
-                        FILE *file = fopen(PlayerInfo, "w");
-                        for (int i = 1; i < 5; ++i)
-                        {
-                                fprintf(file, "");
-                        }
-                        fprintf(file, "H\n");
-                        fclose(file);
+                        ecriture(1,'H');
                         chooseDirection(joueur,araignee,squelette,slime);
                 default:
                         break;
                 }
         }
+}
         
 }
 
