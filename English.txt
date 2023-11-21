@@ -1,12 +1,40 @@
-In the kingdom of Etherielle, the hero volunteers to save Princess Elara, kidnapped by the dreaded dragon Borys and held captive in a dark dungeon. Facing traps and the fierce creature, will the hero succeed in defeating the dragon and liberating the princess, thus restoring peace to the kingdom?
+In the kingdom of Etherielle, the hero volunteers to save Princess Elara, kidnapped by the dreaded dragon Borys and held captive in a dark dungeon. Facing traps and creature, will the hero succeed in defeating the dragon and free the princess, this restoring peace to the kingdom?
 
 It's me, Gerard, who will tell you his story, the story of... [enter your name]
 
 a great... [Barbarian (1) | Mage (2) | Paladin (3) | Thief (4)]
 
-Our hero begins his adventure in a large hall, tall pillars rising in front of him to the ceiling. The entrance of the dungeon behind him is enough to illuminate the room, revealing an opening in the wall leading to a long corridor [2]. To the right is a wooden door adorned with metal bands [3], and to the left is a slightly ajar door emitting a faint light with no escape.
+Our hero begins his adventure in a large hall, tall pillars rising in front of him to the ceiling. The entrance of the dungeon behind him is enough to illuminate the room, revealing an opening in the wall leading to a long corridor [2]. To the right is a wooden door with metal bands [3], and to the left is a slightly open door wich a small amount of light is comming out of the room
 
-the story of 
+the story of...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ========================combat===========================
@@ -31,28 +59,54 @@ You use a bit of your magic to heal yourself (+6 PV)
 You manage to patch up your wounds with a piece of cloth (+4 PV)
 
 Your already at your best 
-Bone fragments start moving on the ground and suddenly rush towards the skeleton; some of them cut you in passing, causing you to lose 1 HP (skeleton - 7 HP).
+Bone fragments start moving on the ground and suddenly rush towards the skeleton, some of them cut you in the air, causing you to lose 1 HP (skeleton + 7 HP).
 The skeleton attacks you.
 The skeleton throw cutting bone fragments on the ground, making it difficult to move without getting hurt. You lose 2 HP and your celerity is halved for 1 turn
-The spider attacks you. 🕷️
+The spider attacks you. 
 
-The spider shoot a web on you. 🕸️
+The spider shoot a web on you. 
 the skeleton does nothing.
 The spider does nothing.
 The slime does nothing.
 The slime attacks you.
 
-The monster attacks you.
+A monster attacks you.
 
 What do you want to do?
 
 succeed
 failed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===================thief's action=====================
 
 ======================================================
-1-attack                2-disappear
-3-heal                  4-defend
+1-attack           2-disappear           3-heal
+4-defend           5-infos
 ======================================================
 
 You stab your dagger into the monster!
@@ -67,11 +121,30 @@ You heal yourself.
 
 You prepare for the attack.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===================barbarian's action=====================
 
 =====================================================
-1-attack                2-war scream
-3-heal                  4-defend
+1-attack          2-war scream          3-heal
+4-defend          5-infos
 =====================================================
 
 You deliver a powerful blow with your axe!
@@ -86,11 +159,32 @@ You heal yourself.
 
 You prepare for the attack.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===================mage's action=====================
 
 =====================================================
-1-attack                2-lightning
-3-heal                  4-defend
+1-attack         2-lightning            3-heal
+4-defend         5-infos
 =====================================================
 
 You send magical projectiles at your enemy!
@@ -106,11 +200,37 @@ You heal yourself.
 You prepare for the attack.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===================paladin's action=====================
 
 =====================================================
-1-attack              2-prayer
-3-heal                4-defend
+1-attack        2-prayer          3-heal
+4-defend        5-infos
 =====================================================
 
 You strike your enemy with a sword blow!
@@ -126,14 +246,73 @@ You heal yourself.
 You prepare for the attack.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 =====================================================
 Your HP:
 Monster's HP:
 =====================================================
 
+=====================================================
+    Vos Pv:
+    Votre celerité :
+    votre defense :
+    votre puissance d'attack:
+_____________________________________________________
+    Pv monstre :
+    celerité monstre :
+    puissance d'attaque monstre:
+=====================================================
+
+
+
 Monster defeated
 
 Player defeated
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ===========================errors==================
 
@@ -143,10 +322,35 @@ Enemy ID error
 
 Class ID error
 
+
+
+
+
+
+
+
+
+
+
+
+
 ===========================BEGIN======================
 1- Continue
 2- New Game
 3- Quit
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ===========================MAP=======================
 
