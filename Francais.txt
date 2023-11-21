@@ -9,6 +9,33 @@ notre heros commence son aventure dans une grande salle , de grand pillier s'ele
 l'histoire de 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ========================combat===========================
 
 vous avez infliger 
@@ -34,25 +61,52 @@ vous etes dejas a votre maximum
 des morceaux d'os se mettent a bouger au sol et foncent soudaint vers le squelette quelques un vous coupe au passage vous perdez 1 PV (squelette + 7 PV) 
 le squelette vous attaque
 le squelette envoie des morceaux d'os coupant au sol cela devien difficile de se deplacer sans se blesse , vous perder 2 PV et celerite/2 pendant 1 tour
-l'araigne vous attaque 🕷️
+l'araigne vous attaque 
 
-l'araigne vous lance une toile dessu 🕸️
+l'araigne vous lance une toile dessu 
 le squelette ne fait rien 
 l'araigne ne fait rien
 le slime ne fait rien 
 le slime vous attaque
 
-le monstre vous attaque 
+un monstre vous attaque 
 
 que voulez vous faire ?
 
 Reussite
 Echec
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===================action voleur=====================
 
 =====================================================
-1-attaque                   2-disparaitre
-3-soin                      4-defendre  
+1-attaque         2-disparaitre          3-soin
+4-defendre        5-infos
 =====================================================
 
 vous planter votre dague dans le monstre !
@@ -67,11 +121,29 @@ vous vous soignez
 
 vous vous prepare pour l'attaque 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===================action barbare=====================
 
 =====================================================
-1-attaque                   2-crie de guerre
-3-soin                      4-defendre  
+1-attaque        2-crie de guerre        3-soin 
+4-defendre       5-infos
 =====================================================
 
 vous donner un grand coup de hache dans le monstre !
@@ -86,11 +158,33 @@ vous vous soignez
 
 vous vous prepare pour l'attaque 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===================action Mage=====================
 
 =====================================================
-1-attaque                   2-Foudre 
-3-soin                      4-defendre  
+1-attaque            2-Foudre           3-soin
+4-defendre           5-infos
 =====================================================
 
 vous envoyer quelque projectiles magique sur votre enemie !
@@ -106,11 +200,37 @@ vous vous soignez
 vous vous prepare pour l'attaque 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===================action paladin=====================
 
 =====================================================
-1-attaque                   2-priere 
-3-soin                      4-defendre  
+1-attaque           2-priere        3-soin      
+4-defendre          5-infos
 =====================================================
 
 vous donenr un coup d'epee a votre enemie !
@@ -126,14 +246,73 @@ vous vous soignez
 vous vous prepare pour l'attaque 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 =====================================================
 vos PV:
 PV du monstre:
 =====================================================
 
+=====================================================
+    Vos Pv:
+    Votre celerité :
+    votre defense :
+    votre puissance d'attack:
+_____________________________________________________
+    Pv monstre :
+    celerité monstre :
+    puissance d'attaque monstre:
+=====================================================
+
+
+
 monstre vaincue
 
 joueur vaincue
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ===========================erreurs==================
 
@@ -143,10 +322,35 @@ erreur ID enemie
 
 erreur ID Classe
 
+
+
+
+
+
+
+
+
+
+
+
+
 ===========================DEBUT======================
 1- Continuer
 2- Nouvelle Partie
 3- Quitter
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ===========================CARTE======================
 
