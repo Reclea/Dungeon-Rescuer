@@ -1281,7 +1281,7 @@ classe combat(int nbMobs,Enemie type,classe joueur){
 // Look and provide the player's position
 char Position(int line)
 {
-    FILE *file = fopen("PlayerInfo.txt", "r");
+    FILE *file = fopen("SaveGame.txt", "r");
     if (file != NULL)
     {
         int currentLine = 1;
@@ -1293,26 +1293,12 @@ char Position(int line)
             if (currentChar == '\n')
             {
                 currentLine++;
-            }
-        }
-
-        // Lecture du caractère à la ligne spécifiée
-        if (currentLine == line)
-        {
-            while (currentChar != '\n' && currentChar != EOF)
-            {
                 currentChar = fgetc(file);
-                if (!isspace(currentChar))
-                {
-                    fclose(file);
-                    return currentChar;
-                }
             }
         }
-
-        fclose(file);
-
-        return '\0'; // Retourne '\0' si la ligne n'est pas trouvée ou s'il y a une erreur de lecture.
+        if(currentLine == line){
+        return currentChar;
+        }
     }
     else
     {
@@ -1493,12 +1479,36 @@ void choix_langue()
         fclose(language);
 }
 
+void SaveClass(classe *classe_joueur,Enemie araignee ,Enemie squelette,Enemie slime){
+                FILE *file = fopen("SaveGame.txt", "r");
+                char class = Position(2);
+                switch (class)
+                {
+                case 'B':
+                        *classe_joueur = choix_classes(1);
+                        break;
+                case 'M':
+                        choix_classes(2);
+                        break;
+                case 'P' :
+                        choix_classes(3);
+                        break;
+                case 'V' : 
+                        choix_classes(4);
+                        break;
+                default:
+                        break;
+                }
+
+}
+
 // start game
 void Start(classe classe_joueur,Enemie araignee ,Enemie squelette,Enemie slime)
 {
         FILE *file = fopen("SaveGame.txt", "r");
-        int c,choose,
-            validCharacterFound = 0; // Flag to indicate if a valid character is found in the file
+        int c = Position(1);
+        int choose;
+        int validCharacterFound = 0; //Flag to indicate if a valid character is found in the file
 
         printf("\033[1;33m"); // Activate yellow and bold text
         printf("*****************************\n");
@@ -1506,36 +1516,38 @@ void Start(classe classe_joueur,Enemie araignee ,Enemie squelette,Enemie slime)
         printf("*****************************\n");
         printf("\033[0m"); // Reset color and bold
 
+        SaveClass(&classe_joueur,araignee,squelette,slime);
+
+
         while ((c = fgetc(file)))
         {
                 switch (c)
                 {
                 case 'F':
-                        strcpy(Lfile, "Histoire.txt");
+                        strcpy(Lfile, "Francais.txt");
                         validCharacterFound = 1;
                         break;
                 case 'E':
-                        strcpy(Lfile, "Story.txt");
+                        strcpy(Lfile, "English.txt");
                         validCharacterFound = 1;
                         break;
                 default:
                            choix_langue();
                         break;
                 }
-
                 if (validCharacterFound == 1)
                 {
-                        if (strcmp(Lfile, "Histoire.txt") == 0)
+                        if (strcmp(Lfile, "Francais.txt") == 0)
                         {
-                                for (int i = 338; i <= 340; i++)
+                                for (int i = 147; i <= 149; i++)
                                 {
                                         lecture(i);
                                         printf("\n");
                                 }
                         }
-                        else if (strcmp(Lfile, "Story.txt") == 0)
+                        else if (strcmp(Lfile, "English.txt") == 0)
                         {
-                                for (int i = 338; i <= 340; i++)
+                                for (int i = 147; i <= 149; i++)
                                 {
                                         lecture(i);
                                         printf("\n");
