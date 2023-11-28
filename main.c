@@ -5,6 +5,7 @@
 #include <sys/stat.h>
 #include <ctype.h>
 
+
 const char *SaveGame = "SaveGame.txt";
 const char *PlayerInfo = "PlayerInfo.txt";
 const char *Histoire = "Histoire.txt";
@@ -14,22 +15,32 @@ const int des = 21;
 
 char Lfile[200];
 
-
 char Nom_j[20];
 
-int nbMobs,room,langue;
+int nbMobs, room, langue;
 
-//declaration of the Enemie structure
-typedef struct 
+typedef struct
+{      
+        int Gold;
+        int HealtPot;
+        int HastePot;
+        int Resistance;
+        int Invisibility;
+        int Key;
+        int MonsterCostume;
+} Inventory;
+
+// declaration of the Enemie structure
+typedef struct
 {
         int ID_Enemie;
         int PV_Enemie;
         int PVmax_Enemie;
         int ATK_Enemie;
         int Celerite_Enemie;
-}Enemie;
-//declaration of the classe structure
-typedef struct 
+} Enemie;
+// declaration of the classe structure
+typedef struct
 {
         int ID_classe;
         int PV_classe;
@@ -37,12 +48,13 @@ typedef struct
         int DEF_classe;
         int ATK_classe;
         int Celerite_classe;
-        int Mana_classe; 
-}classe;
-//read a specifique line of the TXT file 
-void ecriture(int line,char message){
-        FILE *file = fopen(SaveGame,"r+");
-                if (file != NULL)
+        int Mana_classe;
+} classe;
+// read a specifique line of the TXT file
+void ecriture(int line, char message)
+{
+        FILE *file = fopen(SaveGame, "r+");
+        if (file != NULL)
         {
                 int currentLine = 1;
                 int currentChar1;
@@ -57,9 +69,9 @@ void ecriture(int line,char message){
                                 currentLine++;
                                 offset = ftell(file);
                         }
-                        
-                }       fseek(file, offset, SEEK_SET);
-                        fprintf(file,"%c", message);
+                }
+                fseek(file, offset, SEEK_SET);
+                fprintf(file, "%c", message);
 
                 fclose(file);
         }
@@ -67,7 +79,7 @@ void ecriture(int line,char message){
         {
                 printf("\n");
         }
-        return; 
+        return;
 }
 void lecture(int line)
 {
@@ -102,12 +114,13 @@ void lecture(int line)
         }
         return;
 }
-//insert statistique of a class into the player variable 
-classe choix_classes(int ID_classe){
-switch (ID_classe)
+// insert statistique of a class into the player variable
+classe choix_classes(int ID_classe)
 {
-case 1 : 
-        classe Barbare  ; 
+        switch (ID_classe)
+        {
+        case 1:
+                classe Barbare;
                 Barbare.ID_classe = 1;
                 Barbare.Celerite_classe = 3;
                 Barbare.DEF_classe = 2;
@@ -115,102 +128,102 @@ case 1 :
                 Barbare.PV_classe = 60;
                 Barbare.PVmax_classe = 60;
                 Barbare.Mana_classe = 0;
-                return(Barbare);
-        break;
-        
-case 2:
+                ecriture(2,'B');
+                return (Barbare);
+                break;
 
-        classe Mage ;
+        case 2:
+
+                classe Mage;
                 Mage.ID_classe = 2;
                 Mage.Celerite_classe = 4;
                 Mage.DEF_classe = 1;
-                Mage.ATK_classe =2;
+                Mage.ATK_classe = 2;
                 Mage.PV_classe = 40;
                 Mage.PVmax_classe = 40;
                 Mage.Mana_classe = 100;
-                return(Mage);
+                ecriture(2,'M');
+                return (Mage);
 
-        break;
+                break;
 
-case 3 :
-        
-        classe Paladin ;
+        case 3:
+
+                classe Paladin;
                 Paladin.ID_classe = 3;
-                Paladin.Celerite_classe=2;
-                Paladin.DEF_classe=2;
-                Paladin.ATK_classe=3;
-                Paladin.PV_classe= 50;
-                Paladin.PVmax_classe= 50;
+                Paladin.Celerite_classe = 2;
+                Paladin.DEF_classe = 2;
+                Paladin.ATK_classe = 3;
+                Paladin.PV_classe = 50;
+                Paladin.PVmax_classe = 50;
                 Paladin.Mana_classe = 50;
-                return(Paladin);
-        break;
+                ecriture(2,'P');
+                return (Paladin);
+                break;
 
-case 4 :
-        classe Voleur ;
+        case 4:
+                classe Voleur;
                 Voleur.ID_classe = 4;
-                Voleur.Celerite_classe=6;
-                Voleur.DEF_classe=1;
-                Voleur.ATK_classe=2;
-                Voleur.PV_classe= 50;
-                Voleur.PVmax_classe= 50;
+                Voleur.Celerite_classe = 6;
+                Voleur.DEF_classe = 1;
+                Voleur.ATK_classe = 2;
+                Voleur.PV_classe = 50;
+                Voleur.PVmax_classe = 50;
                 Voleur.Mana_classe = 30;
-                return(Voleur);
-        break;
-default: 
-        printf("erreur ID Classe");
-        break;
-}
-              
+                ecriture(2,'V');
+                return (Voleur);
+                break;
+        default:
+                printf("erreur ID Classe");
+                break;
+        }
 }
 
-//insert statistique of each Enemie into they respective variable
-Enemie setup_Enemie(int ID_Enemie){
-switch (ID_Enemie)
+// insert statistique of each Enemie into they respective variable
+Enemie setup_Enemie(int ID_Enemie)
 {
-case 1 :
-        Enemie squelette ; 
+        switch (ID_Enemie)
+        {
+        case 1:
+                Enemie squelette;
                 squelette.ID_Enemie = 1;
                 squelette.Celerite_Enemie = 5;
                 squelette.ATK_Enemie = 3;
                 squelette.PV_Enemie = 50;
                 squelette.PVmax_Enemie = 50;
-                return(squelette);
-        break;
-case 2:
-        Enemie araignee ;
+                return (squelette);
+                break;
+        case 2:
+                Enemie araignee;
                 araignee.ID_Enemie = 2;
                 araignee.Celerite_Enemie = 7;
                 araignee.ATK_Enemie = 4;
                 araignee.PV_Enemie = 60;
                 araignee.PVmax_Enemie = 60;
-                return(araignee);
+                return (araignee);
 
-        break;
+                break;
 
-case 3 :
-        Enemie slime;
+        case 3:
+                Enemie slime;
                 slime.ID_Enemie = 3;
-                slime.Celerite_Enemie=2;
-                slime.ATK_Enemie=1;
-                slime.PV_Enemie= 80;
-                slime.PVmax_Enemie= 80;
-                return(slime);
-        break;
-default: 
-        lecture(321);
-        break;
-}
-              
+                slime.Celerite_Enemie = 2;
+                slime.ATK_Enemie = 1;
+                slime.PV_Enemie = 80;
+                slime.PVmax_Enemie = 80;
+                return (slime);
+                break;
+        default:
+                lecture(321);
+                break;
+        }
 }
 
 // Check if the files are available
 void verif_fichier()
 {
         // open the file
-        FILE *in_file = fopen(PlayerInfo, "r");
         FILE *in_save = fopen(SaveGame, "r");
-        FILE *in_histoire = fopen(Histoire, "r");
-        FILE *in_story = fopen(Story, "r");
 
         // look and create file
 
@@ -218,45 +231,34 @@ void verif_fichier()
         {
                 printf("ERROR: file missing : save ! \n");
         }
-        if (in_histoire == NULL)
-        {
-                printf("ERROR: file missing : histoire !\n");
-        }
-        if (in_story == NULL)
-        {
-                printf("ERROR: file missing : story !\n");
-        }
-        // sauvegarde info joueur
-        if (in_file == NULL)
-        {
-                printf("ERROR: file missing : info_player !\n");
-        }
 }
 
 /*=========================combats=====================*/
 
-//roll a dice to see if the action is a success
-int lancer(int difficulter){
-        int resultat = rand() % des ;
+// roll a dice to see if the action is a success
+int lancer(int difficulter)
+{
+        int resultat = rand() % des;
         if (resultat >= difficulter)
         {
-                printf("%d",resultat);
+                printf("%d", resultat);
                 lecture(76);
                 return 1;
         }
-        else{
-                printf("%d",resultat);
+        else
+        {
+                printf("%d", resultat);
                 lecture(77);
                 return 0;
         }
-        
 }
 
-//description of each action depending of the class of the player
-int tour_j(classe joueur){
+// description of each action depending of the class of the player
+int tour_j(classe joueur)
+{
         printf("que voulez vous faire ?:\n");
         int choix = 0,
-            i=0;
+            i = 0;
         switch (joueur.ID_classe)
         {
         /*=========Barbar turn==============*/
@@ -265,17 +267,17 @@ int tour_j(classe joueur){
                 {
                         lecture(i);
                 }
-                
-                scanf("%d",&choix);
+
+                scanf("%d", &choix);
                 switch (choix)
                 {
                 case 1:
                         lecture(149);
-                        return 1 ;
+                        return 1;
                         break;
                 case 2:
                         lecture(151);
-                        if (lancer(14)==1)
+                        if (lancer(14) == 1)
                         {
                                 lecture(153);
                                 return 5;
@@ -285,8 +287,7 @@ int tour_j(classe joueur){
                                 lecture(155);
                                 return 0;
                         }
-                        
-                        
+
                         break;
                 case 3:
                         lecture(157);
@@ -307,7 +308,6 @@ int tour_j(classe joueur){
 
                 break;
 
-
         /*=========Mage turn==============*/
         case 2:
                 for (i = 184; i < 188; i++)
@@ -315,16 +315,16 @@ int tour_j(classe joueur){
                         lecture(i);
                 }
 
-                scanf("%d",&choix);
+                scanf("%d", &choix);
                 switch (choix)
                 {
                 case 1:
                         lecture(189);
-                        return 1 ;
+                        return 1;
                         break;
                 case 2:
                         lecture(191);
-                        if (lancer(15)==1 )
+                        if (lancer(15) == 1)
                         {
                                 lecture(193);
                                 return 6;
@@ -334,15 +334,14 @@ int tour_j(classe joueur){
                                 lecture(195);
                                 return 0;
                         }
-                        
-                        
+
                         break;
                 case 3:
                         lecture(197);
                         return 2;
                         break;
                 case 4:
-                        lecture(199); 
+                        lecture(199);
                         return 3;
                         break;
                 case 5:
@@ -354,8 +353,6 @@ int tour_j(classe joueur){
                         break;
                 }
 
-        
-                
                 break;
 
         /*=========Paladin turn==============*/
@@ -364,16 +361,16 @@ int tour_j(classe joueur){
                 {
                         lecture(i);
                 }
-                scanf("%d",&choix);
+                scanf("%d", &choix);
                 switch (choix)
                 {
                 case 1:
                         lecture(235);
-                        return 1 ;
+                        return 1;
                         break;
                 case 2:
                         lecture(237);
-                        if (lancer(14)==1)
+                        if (lancer(14) == 1)
                         {
                                 lecture(239);
                                 return 7;
@@ -383,8 +380,7 @@ int tour_j(classe joueur){
                                 lecture(241);
                                 return 0;
                         }
-                        
-                        
+
                         break;
                 case 3:
                         lecture(243);
@@ -406,21 +402,21 @@ int tour_j(classe joueur){
                 break;
 
         /*=========Thief turn==============*/
-        case 4:   
+        case 4:
                 for (i = 106; i < 110; i++)
                 {
                         lecture(i);
                 }
-                scanf("%d",&choix);
+                scanf("%d", &choix);
                 switch (choix)
                 {
                 case 1:
                         lecture(111);
-                        return 1 ;
+                        return 1;
                         break;
                 case 2:
                         lecture(113);
-                        if (lancer(13)==1)
+                        if (lancer(13) == 1)
                         {
                                 lecture(115);
                                 return 4;
@@ -430,8 +426,7 @@ int tour_j(classe joueur){
                                 lecture(117);
                                 return 0;
                         }
-                        
-                        
+
                         break;
                 case 3:
                         lecture(119);
@@ -449,35 +444,35 @@ int tour_j(classe joueur){
                         break;
                 }
 
-
-
                 break;
-        
+
         default:
                 lecture(155);
                 break;
         }
-        
 }
 
-//Enemie choose what he do depending on player stats
-int tour_e(Enemie type,classe joueur,int j_attaquable,int j_ralenti,int j_empoisoné){
-       switch (type.ID_Enemie)
-       {
+// Enemie choose what he do depending on player stats
+int tour_e(Enemie type, classe joueur, int j_attaquable, int j_ralenti, int j_empoisoné)
+{
+        switch (type.ID_Enemie)
+        {
         case 1: /*=====================skeleton=========================*/
-                if (joueur.PV_classe - type.ATK_Enemie <= 0 && j_attaquable == 0 )
+                if (joueur.PV_classe - type.ATK_Enemie <= 0 && j_attaquable == 0)
                 {
                         lecture(62);
-                        
-                        return 1; //attaque basic
+
+                        return 1; // attaque basic
                 }
-                else if (type.PV_Enemie <= type.PV_Enemie/3 && rand()% des >= 18 )
-                {       lecture(61);
-                        return 4; //soin special squelette
+                else if (type.PV_Enemie <= type.PV_Enemie / 3 && rand() % des >= 18)
+                {
+                        lecture(61);
+                        return 4; // soin special squelette
                 }
-                else if (joueur.Celerite_classe/2 <= type.Celerite_Enemie/2 && j_ralenti == 0 && rand()% des >= 14)
-                {       lecture(63);                                                          
-                        return 5; //attaque special squelette
+                else if (joueur.Celerite_classe / 2 <= type.Celerite_Enemie / 2 && j_ralenti == 0 && rand() % des >= 14)
+                {
+                        lecture(63);
+                        return 5; // attaque special squelette
                 }
                 else if (j_attaquable == 0)
                 {
@@ -490,69 +485,65 @@ int tour_e(Enemie type,classe joueur,int j_attaquable,int j_ralenti,int j_empois
                         return 0;
                 }
 
-                
-                
-
-                
-        break;
+                break;
         case 2: /*============================spider================================*/
-                if (joueur.PV_classe - type.ATK_Enemie <= 0 && j_attaquable == 0 )
+                if (joueur.PV_classe - type.ATK_Enemie <= 0 && j_attaquable == 0)
                 {
                         lecture(64);
 
-                        return 1; //attaque basic
+                        return 1; // attaque basic
                 }
-                else if (type.PV_Enemie <= type.PV_Enemie/3 && rand()% des >= 15 && j_attaquable == 0 && j_ralenti == 0&& joueur.Celerite_classe/2 <= type.Celerite_Enemie/2)
+                else if (type.PV_Enemie <= type.PV_Enemie / 3 && rand() % des >= 15 && j_attaquable == 0 && j_ralenti == 0 && joueur.Celerite_classe / 2 <= type.Celerite_Enemie / 2)
                 {
                         lecture(66);
-                        
-                        return 3; //attaque special araignee      
+
+                        return 3; // attaque special araignee
                 }
-                else if (rand()% des >= 17 && j_attaquable == 0 && j_ralenti == 0 && joueur.Celerite_classe/2 <= type.Celerite_Enemie/2)
+                else if (rand() % des >= 17 && j_attaquable == 0 && j_ralenti == 0 && joueur.Celerite_classe / 2 <= type.Celerite_Enemie / 2)
                 {
                         lecture(66);
-                        return 3; //attaque special araignee
+                        return 3; // attaque special araignee
                 }
                 else if (j_attaquable == 0)
                 {
                         lecture(64);
 
-                        return 1;  //attaque basic
-                } 
+                        return 1; // attaque basic
+                }
                 else
                 {
                         lecture(68);
                         return 0;
-                }   
-        break;
-       case 3:
-                if (joueur.PV_classe - type.ATK_Enemie <= 0 && j_attaquable == 0 )
+                }
+                break;
+        case 3:
+                if (joueur.PV_classe - type.ATK_Enemie <= 0 && j_attaquable == 0)
                 {
                         lecture(70);
-                        
-                        return 1; //attaque basic
+
+                        return 1; // attaque basic
                 }
-                else if (type.PV_Enemie <= type.PV_Enemie/2 && rand()% des >= 16)
+                else if (type.PV_Enemie <= type.PV_Enemie / 2 && rand() % des >= 16)
                 {
-                        return 6;       
+                        return 6;
                 }
                 else if (/*rand()% des >= 17 &&*/ j_empoisoné == 0)
                 {
                         lecture(79);
                         return 7;
                 }
-                
-        break;
 
-       
-       default:
+                break;
+
+        default:
                 lecture(321);
-        break;
-       } 
+                break;
+        }
 }
 
-//describe the healing action of the classe played by the player then return the value of healing
-int soin(classe joueur){
+// describe the healing action of the classe played by the player then return the value of healing
+int soin(classe joueur)
+{
         if (joueur.PV_classe < joueur.PVmax_classe)
         {
                 switch (joueur.ID_classe)
@@ -573,77 +564,73 @@ int soin(classe joueur){
                         lecture(58);
                         return 4;
                         break;
-        
+
                 default:
                         break;
                 }
         }
-        else if (joueur.PV_classe>=joueur.PVmax_classe)
+        else if (joueur.PV_classe >= joueur.PVmax_classe)
         {
                 lecture(60);
-                return(0);
+                return (0);
         }
-        
-        
-        
 }
-void end_turn(int j_invisible,int defense_j,int celerite_j,int celerite_e,int j_renforcer,int j_ralenti,int j_empoisoné,int e_ralenti,classe *joueur, Enemie *type){
+void end_turn(int j_invisible, int defense_j, int celerite_j, int celerite_e, int j_renforcer, int j_ralenti, int j_empoisoné, int e_ralenti, classe *joueur, Enemie *type)
+{
         if (j_invisible - 1 == 0)
         {
-                celerite_j = celerite_j /2 ;
-                                                
+                celerite_j = celerite_j / 2;
         }
-        if (j_ralenti - 1  == 0)
+        if (j_ralenti - 1 == 0)
         {
                 celerite_j = celerite_j * 2;
         }
         if (e_ralenti - 1 == 0)
         {
-                celerite_e = celerite_e *2;
+                celerite_e = celerite_e * 2;
         }
         if (j_renforcer - 1 == 0)
         {
-                defense_j = defense_j/2;
+                defense_j = defense_j / 2;
         }
 
         if (j_empoisoné > 0)
         {
                 lecture(78);
-                joueur->PV_classe = joueur->PV_classe - 2 ;
+                joueur->PV_classe = joueur->PV_classe - 2;
         }
-        
 
         /* compteur de tour */
-                                
-        if (j_invisible!=0)
+
+        if (j_invisible != 0)
         {
                 j_invisible = j_invisible - 1;
         }
 
-        if (j_renforcer!=0)
+        if (j_renforcer != 0)
         {
-                j_renforcer = j_renforcer -1;
+                j_renforcer = j_renforcer - 1;
         }
-        if (e_ralenti!=0)
+        if (e_ralenti != 0)
         {
-                e_ralenti= e_ralenti-1;
+                e_ralenti = e_ralenti - 1;
         }
-                        
+
         if (celerite_j != 0)
         {
                 celerite_j = celerite_j - 1;
         }
-        
-        if (j_empoisoné !=0)
+
+        if (j_empoisoné != 0)
         {
-                j_empoisoné = j_empoisoné -1;
+                j_empoisoné = j_empoisoné - 1;
         }
 }
-//one big function for the combat, the one who start the combat depend on the celerity,the combat loop until one of them die 
-classe combat(int nbMobs,Enemie type,classe joueur){
-        
-        
-        type.PV_Enemie = type.PVmax_Enemie ;
+// one big function for the combat, the one who start the combat depend on the celerity,the combat loop until one of them die
+classe combat(int nbMobs, Enemie type, classe joueur)
+{
+
+        type.PV_Enemie = type.PVmax_Enemie;
         int i = 0,
             resultat = 0,
             degats = 0,
@@ -652,181 +639,43 @@ classe combat(int nbMobs,Enemie type,classe joueur){
             celerite_j = joueur.Celerite_classe,
             celerite_e = type.Celerite_Enemie,
             j_renforcer = 0,
-            j_ralenti = 0 , 
+            j_ralenti = 0,
             j_empoisoné = 0,
             e_ralenti = 0;
 
         float multiplicateur_e = 1,
-              multiplicateur_j =1;
-            
+              multiplicateur_j = 1;
 
         lecture(72);
-        if (celerite_e>celerite_j)
+        if (celerite_e > celerite_j)
         {
-                do{
-                       
-                        
-                        if (celerite_e/2 >= celerite_j)
+                do
+                {
+
+                        if (celerite_e / 2 >= celerite_j)
                         {
-                        /*========================advantage monster========================================*/
+                                /*========================advantage monster========================================*/
                                 lecture(47);
-                                resultat = tour_e(type,joueur,j_invisible,j_ralenti,j_empoisoné);
+                                resultat = tour_e(type, joueur, j_invisible, j_ralenti, j_empoisoné);
                                 switch (resultat)
                                 {
                                 case 1:
                                         degats = type.ATK_Enemie * multiplicateur_e;
-                                        degats =  degats - defense_j ;
+                                        degats = degats - defense_j;
                                         if (degats < 0)
                                         {
                                                 degats = 0;
                                         }
-                                        
-                                        joueur.PV_classe = joueur.PV_classe-degats;
+
+                                        joueur.PV_classe = joueur.PV_classe - degats;
                                         lecture(43);
-                                        printf("%d",degats);
+                                        printf("%d", degats);
                                         lecture(45);
                                         multiplicateur_e = 1;
                                         break;
                                 case 3:
-                                        j_ralenti = 3 ;
-                                        celerite_j = celerite_j / 2 ;
-
-                                        break;
-                                case 4:
-                                        type.PV_Enemie = type.PV_Enemie + 7;
-                                        break;
-                                case 5:
-                                        j_ralenti = 2;
-                                        joueur.PV_classe = joueur.PV_classe - 2;
-                                        break;
-                                default:
-                                        lecture(319);
-                                        break;
-                                }
-                                sleep(4);
-                                
-                                
-                                
-                        }
-                        else if (celerite_j/2 >= celerite_e)
-                        {
-                               
-                        /*======================advantage player====================================*/ 
-                                lecture(49);                       
-                                resultat = tour_j(joueur);
-                                switch (resultat)
-                                {
-                                case 1:
-                                        degats =joueur.ATK_classe * multiplicateur_j ;
-                                        if (degats < 0)
-                                        {
-                                                degats = 0;
-                                        }
-                                        type.PV_Enemie=type.PV_Enemie- degats;
-                                        lecture(41);
-                                        printf("%d",degats);
-                                        lecture(45);
-                                        multiplicateur_j = 1;
-                                        
-                                        break;
-
-                                case 2:
-                                        joueur.PV_classe = joueur.PV_classe + soin(joueur);
-                                        break;
-
-                                case 3:
-                                        defense_j = defense_j * 2;
-                                        break;
-
-                                case 4:
-                                        j_invisible = 2 ;
-                                        multiplicateur_j = 2 ;
-                                        celerite_j = celerite_j * 2 ;
-
-                                        break;
-                                case 5:
-                                        defense_j = defense_j * 2;
-                                        j_renforcer = 2;
-                                        multiplicateur_j = multiplicateur_j *2;
-                                        break;
-
-                                case 6:
-                                        type.PV_Enemie=type.PV_Enemie-6;
-                                        break;
-                                
-                                case 7:
-                                        multiplicateur_e = 0.5;
-                                        celerite_e = celerite_e /2 ;
-                                        e_ralenti = 2;
-                                        break;
-                                case 8 :
-                                                
-                                                lecture(276);
-                                                printf("nom joueur\n");
-                                                lecture(277);
-                                                printf("%d \n",joueur.PV_classe);
-                                                lecture(278);
-                                                printf("%d \n",celerite_j);
-                                                lecture(279);
-                                                printf("%d \n",defense_j);
-                                                lecture(280);
-                                                printf("%d \n",joueur.ATK_classe);
-                                                lecture(281);
-                                                switch (type.ID_Enemie)
-                                                {
-                                                case 1:
-                                                        printf("araignée\n");
-                                                        break;
-                                                case 2:
-                                                        printf("squelette\n");
-                                                        break;
-                                                case 3:
-                                                        printf("slime\n");
-                                                        break;
-                                                
-                                                default:
-                                                        break;
-                                                }
-                                                lecture(282);
-                                                printf("%d \n",type.PV_Enemie);
-                                                lecture(283);
-                                                printf("%d \n",celerite_e);
-                                                lecture(284);
-                                                printf("%d \n",type.ATK_Enemie);
-                                                lecture(285);
-
-                                                break;
-                                        
-                                
-                                default:
-                                        lecture(319);
-                                        break;
-                                }
-                                sleep(4);
-                                
-                                
-                                
-                        }
-                        
-                        
-                /*========================Monster Turn========================================*/
-                        resultat = tour_e(type,joueur,j_invisible,j_ralenti,j_empoisoné);
-                                switch (resultat)
-                                {
-                                case 1:
-                                        degats = (type.ATK_Enemie * multiplicateur_e)-defense_j;
-                                        if (degats < 0)
-                                        {
-                                                degats = 0;
-                                        }
-                                        joueur.PV_classe = joueur.PV_classe-degats;
-                                        lecture(43);
-                                        printf("%d",degats);
-                                        lecture(45);
-                                        break;
-                                case 3:
                                         j_ralenti = 3;
-                                        celerite_j = celerite_j / 2 ;
+                                        celerite_j = celerite_j / 2;
 
                                         break;
                                 case 4:
@@ -836,166 +685,32 @@ classe combat(int nbMobs,Enemie type,classe joueur){
                                         j_ralenti = 2;
                                         joueur.PV_classe = joueur.PV_classe - 2;
                                         break;
-                                case 6:
-                                        j_empoisoné = 5;
-                                        break;
                                 default:
                                         lecture(319);
                                         break;
                                 }
                                 sleep(4);
-                                
-                        
-                        
-                        
-                        
-
-
-                /*======================TURN OF THE PLAYER====================================*/                
-                        resultat = tour_j(joueur);
-                                switch (resultat)
-                                {
-                                case 1:
-                                        degats =joueur.ATK_classe * multiplicateur_j ;
-                                        if (degats < 0)
-                                        {
-                                                degats = 0;
-                                        }
-                                        type.PV_Enemie=type.PV_Enemie- degats;
-                                        lecture(41);
-                                        printf("%d",degats);
-                                        lecture(45);
-                                        multiplicateur_j = 1;
-                                        
-                                        break;
-
-                                case 2:
-                                        joueur.PV_classe = joueur.PV_classe + soin(joueur);
-                                        break;
-
-                                case 3:
-                                        defense_j = defense_j * 2;
-                                        break;
-
-                                case 4:
-                                        j_invisible = 2 ;
-                                        multiplicateur_j = 2 ;
-                                        celerite_j = celerite_j * 2 ;
-
-                                        break;
-                                case 5:
-                                        defense_j = defense_j * 2;
-                                        j_renforcer = 2;
-                                        multiplicateur_j = multiplicateur_j *2;
-                                        break;
-
-                                case 6:
-                                        type.PV_Enemie=type.PV_Enemie-6;
-                                        break;
-                                
-                                case 7:
-                                        multiplicateur_e = 0.5;
-                                        celerite_e = celerite_e /2 ;
-                                        e_ralenti = 2;
-                                        break;
-                                case 8 :
-                                                
-                                                lecture(276);
-                                                printf("nom joueur\n");
-                                                lecture(277);
-                                                printf("%d \n",joueur.PV_classe);
-                                                lecture(278);
-                                                printf("%d \n",celerite_j);
-                                                lecture(279);
-                                                printf("%d \n",defense_j);
-                                                lecture(280);
-                                                printf("%d \n",joueur.ATK_classe);
-                                                lecture(281);
-                                                switch (type.ID_Enemie)
-                                                {
-                                                case 1:
-                                                        printf("araignée\n");
-                                                        break;
-                                                case 2:
-                                                        printf("squelette\n");
-                                                        break;
-                                                case 3:
-                                                        printf("slime\n");
-                                                        break;
-                                                
-                                                default:
-                                                        break;
-                                                }
-                                                lecture(282);
-                                                printf("%d \n",type.PV_Enemie);
-                                                lecture(283);
-                                                printf("%d \n",celerite_e);
-                                                lecture(284);
-                                                printf("%d \n",type.ATK_Enemie);
-                                                lecture(285);
-
-                                                break;
-                                default:
-                                        lecture(319);
-                                        break;
-                                }
-                                sleep(4);
-                                
-                                
-                                
-                /*========================end turn verification===============================================*/
-                        
-                                end_turn(j_invisible,defense_j,celerite_j,celerite_e,j_renforcer,j_ralenti,j_empoisoné,e_ralenti,&joueur,&type);
-
-                                for (i = 271; i < 275; i++)
-                                {
-                                        lecture(i);
-                                        if (i ==272  )
-                                        {
-                                               printf("%d\n",joueur.PV_classe);
-                                        }
-                                        else if (i == 273 )
-                                        {
-                                               printf("%d\n",type.PV_Enemie);
-                                        }
-                                        
-                                }
-                                sleep(4);
-                                
-                                
-
-                                resultat=0;
-
-                                
-                        
-                        
-                        
-
-                }while (type.PV_Enemie>0 && joueur.PV_classe>0);
-                  
-        }
-        else if (type.Celerite_Enemie<=joueur.Celerite_classe)
-        {
-                do{
-                        if (celerite_e/2 >= celerite_j)
+                        }
+                        else if (celerite_j / 2 >= celerite_e)
                         {
-                        /*======================advantage player====================================*/ 
-                                lecture(49);                       
+
+                                /*======================advantage player====================================*/
+                                lecture(49);
                                 resultat = tour_j(joueur);
                                 switch (resultat)
                                 {
                                 case 1:
-                                        degats =joueur.ATK_classe * multiplicateur_j ;
+                                        degats = joueur.ATK_classe * multiplicateur_j;
                                         if (degats < 0)
                                         {
                                                 degats = 0;
                                         }
-                                        type.PV_Enemie=type.PV_Enemie- degats;
+                                        type.PV_Enemie = type.PV_Enemie - degats;
                                         lecture(41);
-                                        printf("%d",degats);
+                                        printf("%d", degats);
                                         lecture(45);
                                         multiplicateur_j = 1;
-                                        
+
                                         break;
 
                                 case 2:
@@ -1007,95 +722,339 @@ classe combat(int nbMobs,Enemie type,classe joueur){
                                         break;
 
                                 case 4:
-                                        j_invisible = 2 ;
-                                        multiplicateur_j = 2 ;
-                                        celerite_j = celerite_j * 2 ;
+                                        j_invisible = 2;
+                                        multiplicateur_j = 2;
+                                        celerite_j = celerite_j * 2;
 
                                         break;
                                 case 5:
                                         defense_j = defense_j * 2;
                                         j_renforcer = 2;
-                                        multiplicateur_j = multiplicateur_j *2;
+                                        multiplicateur_j = multiplicateur_j * 2;
                                         break;
 
                                 case 6:
-                                        type.PV_Enemie=type.PV_Enemie-6;
+                                        type.PV_Enemie = type.PV_Enemie - 6;
                                         break;
-                                
+
                                 case 7:
                                         multiplicateur_e = 0.5;
-                                        celerite_e = celerite_e /2 ;
+                                        celerite_e = celerite_e / 2;
                                         e_ralenti = 2;
                                         break;
-                                case 8 :
-                                                
-                                                lecture(276);
-                                                printf("nom joueur\n");
-                                                lecture(277);
-                                                printf("%d \n",joueur.PV_classe);
-                                                lecture(278);
-                                                printf("%d \n",celerite_j);
-                                                lecture(279);
-                                                printf("%d \n",defense_j);
-                                                lecture(280);
-                                                printf("%d \n",joueur.ATK_classe);
-                                                lecture(281);
-                                                switch (type.ID_Enemie)
-                                                {
-                                                case 1:
-                                                        printf("araignée\n");
-                                                        break;
-                                                case 2:
-                                                        printf("squelette\n");
-                                                        break;
-                                                case 3:
-                                                        printf("slime\n");
-                                                        break;
-                                                
-                                                default:
-                                                        break;
-                                                }
-                                                lecture(282);
-                                                printf("%d \n",type.PV_Enemie);
-                                                lecture(283);
-                                                printf("%d \n",celerite_e);
-                                                lecture(284);
-                                                printf("%d \n",type.ATK_Enemie);
-                                                lecture(285);
+                                case 8:
 
+                                        lecture(276);
+                                        printf("nom joueur\n");
+                                        lecture(277);
+                                        printf("%d \n", joueur.PV_classe);
+                                        lecture(278);
+                                        printf("%d \n", celerite_j);
+                                        lecture(279);
+                                        printf("%d \n", defense_j);
+                                        lecture(280);
+                                        printf("%d \n", joueur.ATK_classe);
+                                        lecture(281);
+                                        switch (type.ID_Enemie)
+                                        {
+                                        case 1:
+                                                printf("araignée\n");
                                                 break;
-                                
+                                        case 2:
+                                                printf("squelette\n");
+                                                break;
+                                        case 3:
+                                                printf("slime\n");
+                                                break;
+
+                                        default:
+                                                break;
+                                        }
+                                        lecture(282);
+                                        printf("%d \n", type.PV_Enemie);
+                                        lecture(283);
+                                        printf("%d \n", celerite_e);
+                                        lecture(284);
+                                        printf("%d \n", type.ATK_Enemie);
+                                        lecture(285);
+
+                                        break;
+
                                 default:
                                         lecture(319);
                                         break;
                                 }
                                 sleep(4);
-                                
-                                
-                                
                         }
-                        else if (celerite_j/2 >= celerite_e)
+
+                        /*========================Monster Turn========================================*/
+                        resultat = tour_e(type, joueur, j_invisible, j_ralenti, j_empoisoné);
+                        switch (resultat)
+                        {
+                        case 1:
+                                degats = (type.ATK_Enemie * multiplicateur_e) - defense_j;
+                                if (degats < 0)
+                                {
+                                        degats = 0;
+                                }
+                                joueur.PV_classe = joueur.PV_classe - degats;
+                                lecture(43);
+                                printf("%d", degats);
+                                lecture(45);
+                                break;
+                        case 3:
+                                j_ralenti = 3;
+                                celerite_j = celerite_j / 2;
+
+                                break;
+                        case 4:
+                                type.PV_Enemie = type.PV_Enemie + 7;
+                                break;
+                        case 5:
+                                j_ralenti = 2;
+                                joueur.PV_classe = joueur.PV_classe - 2;
+                                break;
+                        case 6:
+                                j_empoisoné = 5;
+                                break;
+                        default:
+                                lecture(319);
+                                break;
+                        }
+                        sleep(4);
+
+                        /*======================TURN OF THE PLAYER====================================*/
+                        resultat = tour_j(joueur);
+                        switch (resultat)
+                        {
+                        case 1:
+                                degats = joueur.ATK_classe * multiplicateur_j;
+                                if (degats < 0)
+                                {
+                                        degats = 0;
+                                }
+                                type.PV_Enemie = type.PV_Enemie - degats;
+                                lecture(41);
+                                printf("%d", degats);
+                                lecture(45);
+                                multiplicateur_j = 1;
+
+                                break;
+
+                        case 2:
+                                joueur.PV_classe = joueur.PV_classe + soin(joueur);
+                                break;
+
+                        case 3:
+                                defense_j = defense_j * 2;
+                                break;
+
+                        case 4:
+                                j_invisible = 2;
+                                multiplicateur_j = 2;
+                                celerite_j = celerite_j * 2;
+
+                                break;
+                        case 5:
+                                defense_j = defense_j * 2;
+                                j_renforcer = 2;
+                                multiplicateur_j = multiplicateur_j * 2;
+                                break;
+
+                        case 6:
+                                type.PV_Enemie = type.PV_Enemie - 6;
+                                break;
+
+                        case 7:
+                                multiplicateur_e = 0.5;
+                                celerite_e = celerite_e / 2;
+                                e_ralenti = 2;
+                                break;
+                        case 8:
+
+                                lecture(276);
+                                printf("nom joueur\n");
+                                lecture(277);
+                                printf("%d \n", joueur.PV_classe);
+                                lecture(278);
+                                printf("%d \n", celerite_j);
+                                lecture(279);
+                                printf("%d \n", defense_j);
+                                lecture(280);
+                                printf("%d \n", joueur.ATK_classe);
+                                lecture(281);
+                                switch (type.ID_Enemie)
+                                {
+                                case 1:
+                                        printf("araignée\n");
+                                        break;
+                                case 2:
+                                        printf("squelette\n");
+                                        break;
+                                case 3:
+                                        printf("slime\n");
+                                        break;
+
+                                default:
+                                        break;
+                                }
+                                lecture(282);
+                                printf("%d \n", type.PV_Enemie);
+                                lecture(283);
+                                printf("%d \n", celerite_e);
+                                lecture(284);
+                                printf("%d \n", type.ATK_Enemie);
+                                lecture(285);
+
+                                break;
+                        default:
+                                lecture(319);
+                                break;
+                        }
+                        sleep(4);
+
+                        /*========================end turn verification===============================================*/
+
+                        end_turn(j_invisible, defense_j, celerite_j, celerite_e, j_renforcer, j_ralenti, j_empoisoné, e_ralenti, &joueur, &type);
+
+                        for (i = 271; i < 275; i++)
+                        {
+                                lecture(i);
+                                if (i == 272)
+                                {
+                                        printf("%d\n", joueur.PV_classe);
+                                }
+                                else if (i == 273)
+                                {
+                                        printf("%d\n", type.PV_Enemie);
+                                }
+                        }
+                        sleep(4);
+
+                        resultat = 0;
+
+                } while (type.PV_Enemie > 0 && joueur.PV_classe > 0);
+        }
+        else if (type.Celerite_Enemie <= joueur.Celerite_classe)
+        {
+                do
+                {
+                        if (celerite_e / 2 >= celerite_j)
+                        {
+                                /*======================advantage player====================================*/
+                                lecture(49);
+                                resultat = tour_j(joueur);
+                                switch (resultat)
+                                {
+                                case 1:
+                                        degats = joueur.ATK_classe * multiplicateur_j;
+                                        if (degats < 0)
+                                        {
+                                                degats = 0;
+                                        }
+                                        type.PV_Enemie = type.PV_Enemie - degats;
+                                        lecture(41);
+                                        printf("%d", degats);
+                                        lecture(45);
+                                        multiplicateur_j = 1;
+
+                                        break;
+
+                                case 2:
+                                        joueur.PV_classe = joueur.PV_classe + soin(joueur);
+                                        break;
+
+                                case 3:
+                                        defense_j = defense_j * 2;
+                                        break;
+
+                                case 4:
+                                        j_invisible = 2;
+                                        multiplicateur_j = 2;
+                                        celerite_j = celerite_j * 2;
+
+                                        break;
+                                case 5:
+                                        defense_j = defense_j * 2;
+                                        j_renforcer = 2;
+                                        multiplicateur_j = multiplicateur_j * 2;
+                                        break;
+
+                                case 6:
+                                        type.PV_Enemie = type.PV_Enemie - 6;
+                                        break;
+
+                                case 7:
+                                        multiplicateur_e = 0.5;
+                                        celerite_e = celerite_e / 2;
+                                        e_ralenti = 2;
+                                        break;
+                                case 8:
+
+                                        lecture(276);
+                                        printf("nom joueur\n");
+                                        lecture(277);
+                                        printf("%d \n", joueur.PV_classe);
+                                        lecture(278);
+                                        printf("%d \n", celerite_j);
+                                        lecture(279);
+                                        printf("%d \n", defense_j);
+                                        lecture(280);
+                                        printf("%d \n", joueur.ATK_classe);
+                                        lecture(281);
+                                        switch (type.ID_Enemie)
+                                        {
+                                        case 1:
+                                                printf("araignée\n");
+                                                break;
+                                        case 2:
+                                                printf("squelette\n");
+                                                break;
+                                        case 3:
+                                                printf("slime\n");
+                                                break;
+
+                                        default:
+                                                break;
+                                        }
+                                        lecture(282);
+                                        printf("%d \n", type.PV_Enemie);
+                                        lecture(283);
+                                        printf("%d \n", celerite_e);
+                                        lecture(284);
+                                        printf("%d \n", type.ATK_Enemie);
+                                        lecture(285);
+
+                                        break;
+
+                                default:
+                                        lecture(319);
+                                        break;
+                                }
+                                sleep(4);
+                        }
+                        else if (celerite_j / 2 >= celerite_e)
                         {
                                 /*========================advantage monster========================================*/
                                 lecture(47);
-                                resultat = tour_e(type,joueur,j_invisible,j_ralenti,j_empoisoné);
+                                resultat = tour_e(type, joueur, j_invisible, j_ralenti, j_empoisoné);
                                 switch (resultat)
                                 {
                                 case 1:
-                                        degats = (type.ATK_Enemie * multiplicateur_e)-defense_j;
+                                        degats = (type.ATK_Enemie * multiplicateur_e) - defense_j;
                                         if (degats < 0)
                                         {
                                                 degats = 0;
                                         }
-                                        joueur.PV_classe = joueur.PV_classe-degats;
+                                        joueur.PV_classe = joueur.PV_classe - degats;
                                         lecture(43);
-                                        printf("%d",degats);
+                                        printf("%d", degats);
                                         lecture(45);
                                         multiplicateur_e = 1;
                                         break;
                                 case 3:
-                                        j_ralenti = 3 ;
-                                        celerite_j = celerite_j / 2 ;
+                                        j_ralenti = 3;
+                                        celerite_j = celerite_j / 2;
 
                                         break;
                                 case 4:
@@ -1113,183 +1072,163 @@ classe combat(int nbMobs,Enemie type,classe joueur){
                                         break;
                                 }
                                 sleep(4);
-                                
-                                
-                                
                         }
 
-                               
-                        
-                        
-                        
-                
-                        
-                        
-                        
-                        
-
-
-                /*======================TURN OF THE PLAYER====================================*/                
+                        /*======================TURN OF THE PLAYER====================================*/
                         resultat = tour_j(joueur);
-                                switch (resultat)
+                        switch (resultat)
+                        {
+                        case 1:
+                                degats = joueur.ATK_classe * multiplicateur_j;
+                                if (degats < 0)
+                                {
+                                        degats = 0;
+                                }
+                                type.PV_Enemie = type.PV_Enemie - degats;
+                                lecture(41);
+                                printf("%d", degats);
+                                lecture(45);
+                                multiplicateur_j = 1;
+
+                                break;
+
+                        case 2:
+                                joueur.PV_classe = joueur.PV_classe + soin(joueur);
+                                break;
+
+                        case 3:
+                                defense_j = defense_j * 2;
+                                break;
+
+                        case 4:
+                                j_invisible = 2;
+                                multiplicateur_j = 2;
+                                celerite_j = celerite_j * 2;
+
+                                break;
+                        case 5:
+                                defense_j = defense_j * 2;
+                                j_renforcer = 2;
+                                multiplicateur_j = multiplicateur_j * 2;
+                                break;
+
+                        case 6:
+                                type.PV_Enemie = type.PV_Enemie - 6;
+                                break;
+
+                        case 7:
+                                multiplicateur_e = 0.5;
+                                celerite_e = celerite_e / 2;
+                                e_ralenti = 2;
+                                break;
+                        case 8:
+
+                                lecture(276);
+                                printf("nom joueur\n");
+                                lecture(277);
+                                printf("%d \n", joueur.PV_classe);
+                                lecture(278);
+                                printf("%d \n", celerite_j);
+                                lecture(279);
+                                printf("%d \n", defense_j);
+                                lecture(280);
+                                printf("%d \n", joueur.ATK_classe);
+                                lecture(281);
+                                switch (type.ID_Enemie)
                                 {
                                 case 1:
-                                        degats =joueur.ATK_classe * multiplicateur_j ;
-                                        if (degats < 0)
-                                        {
-                                                degats = 0;
-                                        }
-                                        type.PV_Enemie=type.PV_Enemie- degats;
-                                        lecture(41);
-                                        printf("%d",degats);
-                                        lecture(45);
-                                        multiplicateur_j = 1;
-                                        
+                                        printf("araignée\n");
                                         break;
-
                                 case 2:
-                                        joueur.PV_classe = joueur.PV_classe + soin(joueur);
+                                        printf("squelette\n");
                                         break;
-
                                 case 3:
-                                        defense_j = defense_j * 2;
+                                        printf("slime\n");
                                         break;
 
-                                case 4:
-                                        j_invisible = 2 ;
-                                        multiplicateur_j = 2 ;
-                                        celerite_j = celerite_j * 2 ;
-
-                                        break;
-                                case 5:
-                                        defense_j = defense_j * 2;
-                                        j_renforcer = 2;
-                                        multiplicateur_j = multiplicateur_j *2;
-                                        break;
-
-                                case 6:
-                                        type.PV_Enemie=type.PV_Enemie-6;
-                                        break;
-                                
-                                case 7:
-                                        multiplicateur_e = 0.5;
-                                        celerite_e = celerite_e /2 ;
-                                        e_ralenti = 2;
-                                        break;
-                                case 8 :
-                                                
-                                                lecture(276);
-                                                printf("nom joueur\n");
-                                                lecture(277);
-                                                printf("%d \n",joueur.PV_classe);
-                                                lecture(278);
-                                                printf("%d \n",celerite_j);
-                                                lecture(279);
-                                                printf("%d \n",defense_j);
-                                                lecture(280);
-                                                printf("%d \n",joueur.ATK_classe);
-                                                lecture(281);
-                                                switch (type.ID_Enemie)
-                                                {
-                                                case 1:
-                                                        printf("araignée\n");
-                                                        break;
-                                                case 2:
-                                                        printf("squelette\n");
-                                                        break;
-                                                case 3:
-                                                        printf("slime\n");
-                                                        break;
-                                                
-                                                default:
-                                                        break;
-                                                }
-                                                lecture(282);
-                                                printf("%d \n",type.PV_Enemie);
-                                                lecture(283);
-                                                printf("%d \n",celerite_e);
-                                                lecture(284);
-                                                printf("%d \n",type.ATK_Enemie);
-                                                lecture(285);
-
-                                                break;
                                 default:
-                                        lecture(319);
                                         break;
                                 }
-                                sleep(4);
-                        
+                                lecture(282);
+                                printf("%d \n", type.PV_Enemie);
+                                lecture(283);
+                                printf("%d \n", celerite_e);
+                                lecture(284);
+                                printf("%d \n", type.ATK_Enemie);
+                                lecture(285);
+
+                                break;
+                        default:
+                                lecture(319);
+                                break;
+                        }
+                        sleep(4);
 
                         /*========================Monster Turn========================================*/
-                        resultat = tour_e(type,joueur,j_invisible,j_ralenti,j_empoisoné);
-                                switch (resultat)
+                        resultat = tour_e(type, joueur, j_invisible, j_ralenti, j_empoisoné);
+                        switch (resultat)
+                        {
+                        case 1:
+                                degats = (type.ATK_Enemie * multiplicateur_e) - defense_j;
+                                if (degats < 0)
                                 {
-                                case 1:
-                                        degats = (type.ATK_Enemie * multiplicateur_e)-defense_j;
-                                        if (degats < 0)
-                                        {
-                                                degats = 0;
-                                        }
-                                        joueur.PV_classe = joueur.PV_classe-degats;
-                                        lecture(43);
-                                        printf("%d",degats);
-                                        lecture(45);
-                                        break;
-                                case 3:
-                                        j_ralenti = 3;
-                                        celerite_j = celerite_j / 2 ;
-
-                                        break;
-                                case 4:
-                                        type.PV_Enemie = type.PV_Enemie + 7;
-                                        break;
-                                case 5:
-                                        j_ralenti = 2;
-                                        joueur.PV_classe = joueur.PV_classe - 2;
-                                        break; 
-                                case 6:
-                                        j_empoisoné = 5;
-                                        break;
-                                default:
-                                        lecture(319);
-                                        break;
+                                        degats = 0;
                                 }
-                                sleep(4);
-                        
-                                
-                                
-                /*========================end turn verification===============================================*/
-                        
-                                end_turn(j_invisible,defense_j,celerite_j,celerite_e,j_renforcer,j_ralenti,j_empoisoné,e_ralenti,&joueur,&type);
+                                joueur.PV_classe = joueur.PV_classe - degats;
+                                lecture(43);
+                                printf("%d", degats);
+                                lecture(45);
+                                break;
+                        case 3:
+                                j_ralenti = 3;
+                                celerite_j = celerite_j / 2;
 
-                                for (i = 271; i < 275; i++)
+                                break;
+                        case 4:
+                                type.PV_Enemie = type.PV_Enemie + 7;
+                                break;
+                        case 5:
+                                j_ralenti = 2;
+                                joueur.PV_classe = joueur.PV_classe - 2;
+                                break;
+                        case 6:
+                                j_empoisoné = 5;
+                                break;
+                        default:
+                                lecture(319);
+                                break;
+                        }
+                        sleep(4);
+
+                        /*========================end turn verification===============================================*/
+
+                        end_turn(j_invisible, defense_j, celerite_j, celerite_e, j_renforcer, j_ralenti, j_empoisoné, e_ralenti, &joueur, &type);
+
+                        for (i = 271; i < 275; i++)
+                        {
+                                lecture(i);
+                                if (i == 272)
                                 {
-                                        lecture(i);
-                                        if (i == 272  )
-                                        {
-                                               printf("%d\n",joueur.PV_classe);
-                                        }
-                                        else if (i == 273 )
-                                        {
-                                               printf("%d\n",type.PV_Enemie);
-                                        }
-                                        
+                                        printf("%d\n", joueur.PV_classe);
                                 }
-                                sleep(4);
-                                
+                                else if (i == 273)
+                                {
+                                        printf("%d\n", type.PV_Enemie);
+                                }
+                        }
+                        sleep(4);
 
-                                resultat=0;
-                       
-                }while (type.PV_Enemie>0 && joueur.PV_classe>0);
-                
+                        resultat = 0;
+
+                } while (type.PV_Enemie > 0 && joueur.PV_classe > 0);
         }
 
-        if (type.PV_Enemie<=0)
+        if (type.PV_Enemie <= 0)
         {
                 printf("monstre vaincu\n");
                 return (joueur);
         }
-        else 
+        else
         {
                 printf("joueur vaincue\n");
                 return (joueur);
@@ -1298,166 +1237,197 @@ classe combat(int nbMobs,Enemie type,classe joueur){
         printf("end of the demo thank for playing ");
         sleep(10);
         exit(1);
-        
-        
-
-        
 }
 
 /*======================================================*/
 
-
 // Look and provide the player's position
+
+
 char Position(int line)
 {
-    FILE *file = fopen("SaveGame.txt", "r");
-    if (file != NULL)
-    {
-        int currentLine = 1;
-        char currentChar = '\0';
-
-        while (currentLine < line)
+        FILE *file = fopen("SaveGame.txt", "r");
+        if (file != NULL)
         {
-            currentChar = fgetc(file);
-            if (currentChar == '\n')
-            {
-                currentLine++;
-                currentChar = fgetc(file);
-            }
+                int currentLine = 1;
+                char currentChar = '\0';
+
+                while (currentLine < line)
+                {
+                        currentChar = fgetc(file);
+                        if (currentChar == '\n')
+                        {
+                                currentLine++;
+                                currentChar = fgetc(file);
+                        }
+                }
+                if (currentLine == line)
+                {
+                        return currentChar;
+                }
         }
-        if(currentLine == line){
-        return currentChar;
+        else
+        {
+                printf("Unable to open the file.\n");
+                return '\0';
         }
-    }
-    else
-    {
-        printf("Unable to open the file.\n");
-        return '\0';
-    }
 }
 
-//provide the player a chose to let him choose were to go next also as a description of the room
-void chooseDirection(classe joueur,Enemie araignee,Enemie squelette,Enemie slime)
+void SaveInv(){
+        Inventory inv;
+        inv.HastePot = 1;
+        inv.HealtPot = 4;
+        inv.Invisibility = 5;
+        inv.Key = 1;
+        inv.MonsterCostume = 0;
+        inv.Resistance = 1;
+         char charValue = inv.Gold + '0';
+        ecriture(7,charValue);
+        charValue = inv.HealtPot + '0';
+        ecriture(9,charValue);
+        charValue = inv.HastePot + '0';
+        ecriture(11,charValue);
+        charValue = inv.Resistance + '0';
+        ecriture(13,charValue);
+        charValue = inv.Invisibility + '0';
+        ecriture(15,charValue);
+        charValue = inv.Key + '0';
+        ecriture(17,charValue);
+        charValue = inv.MonsterCostume + '0';
+        ecriture(19,charValue);
+}
+
+void ExtractInv(){
+        Inventory inv;
+        inv.Gold = Position(7) - '0';
+        inv.HealtPot = Position(9) - '0';
+        inv.HastePot = Position(11) - '0';
+        inv.Resistance = Position(13) - '0';
+        inv.Invisibility = Position(15) - '0';
+        inv.Key = Position(17) - '0';
+        inv.MonsterCostume = Position(19) - '0';
+}
+
+
+// provide the player a chose to let him choose were to go next also as a description of the room
+void chooseDirection(classe joueur, Enemie araignee, Enemie squelette, Enemie slime)
 {
+        SaveInv();
         FILE *file = fopen("SaveGame.txt", "r");
-        
+
         char resultat = Position(3);
         int choixJoueur;
         int action;
-while((resultat = fgetc(file)))
-{
-        if (resultat == 'H')
+        while ((resultat = fgetc(file)))
         {
-
-                if (strcmp(Lfile, "Francais.txt") == 0)
+                if (resultat == 'H')
                 {
-                        printf("\n---------------------------------\n");
-                        printf("Vous etes dans le Hall\n");
-                        printf("Que voulez-vous faire ?\n");
-                        printf("1- Carte\n");
-                        printf("2- Aller à Droite\n");
-                        printf("3- Aller à Gauche\n");
-                        printf("---------------------------------\n");
-                }
-                else
-                {
-                        printf("\n---------------------------------\n");
-                        printf("You are in the Hall\n");
-                        printf("What do you want to do?\n");
-                        printf("1- Map\n");
-                        printf("2- Go to right\n");
-                        printf("3- Go to left\n");
-                        printf("---------------------------------\n");
-                }
-
-                scanf("%d", &action);
-
-                switch (action)
-                {
-                case 1:
-                        afficheMap(joueur,araignee,squelette,slime);
-                        break;
-                case 2:
 
                         if (strcmp(Lfile, "Francais.txt") == 0)
                         {
-                                printf("La porte est fermé\n");
-                                chooseDirection(joueur,araignee,squelette,slime);
+                                printf("\n---------------------------------\n");
+                                printf("Vous etes dans le Hall\n");
+                                printf("Que voulez-vous faire ?\n");
+                                printf("1- Carte\n");
+                                printf("2- Aller à Droite\n");
+                                printf("3- Aller à Gauche\n");
+                                printf("---------------------------------\n");
                         }
                         else
                         {
-                                printf("The door is closed\n");
-                                chooseDirection(joueur,araignee,squelette,slime);
+                                printf("\n---------------------------------\n");
+                                printf("You are in the Hall\n");
+                                printf("What do you want to do?\n");
+                                printf("1- Map\n");
+                                printf("2- Go to right\n");
+                                printf("3- Go to left\n");
+                                printf("---------------------------------\n");
                         }
-                        break;
 
-                case 3:
+                        scanf("%d", &action);
 
-                        ecriture(1,'C');
-                        chooseDirection(joueur,araignee,squelette,slime);
-                        break;
-                default:
-                        break;
+                        switch (action)
+                        {
+                        case 1:
+                                afficheMap(joueur, araignee, squelette, slime);
+                                break;
+                        case 2:
+
+                                if (strcmp(Lfile, "Francais.txt") == 0)
+                                {
+                                        printf("La porte est fermé\n");
+                                        chooseDirection(joueur, araignee, squelette, slime);
+                                }
+                                else
+                                {
+                                        printf("The door is closed\n");
+                                        chooseDirection(joueur, araignee, squelette, slime);
+                                }
+                                break;
+
+                        case 3:
+
+                                ecriture(3, 'C');
+                                chooseDirection(joueur, araignee, squelette, slime);
+                                break;
+                        default:
+                                break;
+                        }
+                }
+                else if (resultat == 'C')
+                {
+                        if (strcmp(Lfile, "Francais.txt") == 0)
+                        {
+                                printf("\n---------------------------------\n");
+                                printf("Vous etes dans la Piece 1\n");
+                                combat(1, araignee, joueur);
+                                printf("\n---------------------------------\n");
+                                printf("Vous etes dans la Piece 1\n");
+                                printf("Que voulez-vous faire ?\n");
+                                printf("1- Carte\n");
+                                printf("2- Aller dans le Hall\n");
+                                printf("---------------------------------\n");
+                        }
+                        else
+                        {
+                                printf("\n---------------------------------\n");
+                                printf("You are in Room 1\n");
+                                combat(1, araignee, joueur);
+                                printf("\n---------------------------------\n");
+                                printf("You are in Room 1\n");
+                                printf("What do you want to do?\n");
+                                printf("1- Map\n");
+                                printf("2- Go to the Hall\n");
+                                printf("---------------------------------\n");
+                        }
+                        scanf("%d", &action);
+
+                        switch (action)
+                        {
+                        case 1:
+                                afficheMap(joueur, araignee, squelette, slime);
+                                break;
+                        case 2:
+                                ecriture(3, 'H');
+                                chooseDirection(joueur, araignee, squelette, slime);
+                        default:
+                                break;
+                        }
                 }
         }
-        else if (resultat == 'C')
-        {
-                if (strcmp(Lfile, "Francais.txt") == 0)
-                {
-                        printf("\n---------------------------------\n");
-                        printf("Vous etes dans la Piece 1\n");
-                        combat(1,araignee,joueur);
-                        printf("\n---------------------------------\n");
-                        printf("Vous etes dans la Piece 1\n");
-                        printf("Que voulez-vous faire ?\n");
-                        printf("1- Carte\n");
-                        printf("2- Aller dans le Hall\n");
-                        printf("---------------------------------\n");
-                }
-                else
-                {
-                        printf("\n---------------------------------\n");
-                        printf("You are in Room 1\n");
-                        combat(1,araignee,joueur);
-                        printf("\n---------------------------------\n");
-                        printf("You are in Room 1\n");
-                        printf("What do you want to do?\n");
-                        printf("1- Map\n");
-                        printf("2- Go to the Hall\n");
-                        printf("---------------------------------\n");
-                }
-                scanf("%d", &action);
-
-                switch (action)
-                {
-                case 1:
-                        afficheMap(joueur,araignee,squelette,slime);
-                        break;
-                case 2:
-                        ecriture(1,'H');
-                        chooseDirection(joueur,araignee,squelette,slime);
-                default:
-                        break;
-                }
-        }
-}
-        
 }
 
 // Display the map
-void afficheMap(classe joueur,Enemie araignee,Enemie squelette,Enemie slime)
+void afficheMap(classe joueur, Enemie araignee, Enemie squelette, Enemie slime)
 {
-        char texte;
-        if (strcmp(Lfile, "Histoire.txt") == 0)
+        for (int i = 357; i <= 364; i++)
         {
-                for (int i = 357; i <= 364; i++)
-                {
-                        lecture(i);
-                }
-                printf("\n");
-                sleep(3);
+                lecture(i);
         }
-        chooseDirection(joueur,araignee,squelette,slime);
+        printf("\n");
+        sleep(3);
+
+        chooseDirection(joueur, araignee, squelette, slime);
 }
 
 // choose langue
@@ -1465,9 +1435,7 @@ void choix_langue()
 {
         char choix;
         int loop = 2;
-        FILE *Room = fopen(PlayerInfo, "w");
-        fprintf(Room,"H");
-        fclose(Room);
+        ecriture(3, 'H');
         while (loop == 2)
         {
                 // Affichage de "Francais (1)" en bleu
@@ -1480,58 +1448,56 @@ void choix_langue()
                 printf("English (2)");
                 printf("\033[0m \n"); // Réinitialiser la couleur
                 scanf(" %c", &choix);
+                strcpy(Lfile, "");
                 if (choix == '1')
                 {
-                        strcpy(Lfile, "Histoire.txt");
-                        FILE *file = fopen(SaveGame, "w");
-                        fprintf(file, "F"); // Écrit la chaîne Lfile dans le fichier
-                        fclose(file);
-
+                        strcpy(Lfile, "Francais.txt");
+                        ecriture(1, 'F');
                         loop = 0;
                 }
                 else if (choix == '2')
                 {
-                        strcpy(Lfile, "Story.txt");
-                        FILE *file = fopen(SaveGame, "w");
-                        fprintf(file, "E"); // Écrit la chaîne Lfile dans le fichier
-                        fclose(file);
+                        strcpy(Lfile, "English.txt");
+                        ecriture(1, 'E');
                         loop = 1;
                 }
         }
-        lecture(1);
-        fclose(language);
 }
 
-void SaveClass(classe *classe_joueur,Enemie araignee ,Enemie squelette,Enemie slime){
-                FILE *file = fopen("SaveGame.txt", "r");
-                char class = Position(2);
-                switch (class)
-                {
-                case 'B':
-                        *classe_joueur = choix_classes(1);
-                        break;
-                case 'M':
-                        choix_classes(2);
-                        break;
-                case 'P' :
-                        choix_classes(3);
-                        break;
-                case 'V' : 
-                        choix_classes(4);
-                        break;
-                default:
-                        break;
-                }
-
+void SaveClass(classe *classe_joueur, Enemie araignee, Enemie squelette, Enemie slime)
+{
+        FILE *file = fopen("SaveGame.txt", "r");
+        char class = Position(2);
+        switch (class)
+        {
+        case 'B':
+                *classe_joueur = choix_classes(1);
+                break;
+        case 'M':
+                choix_classes(2);
+                break;
+        case 'P':
+                choix_classes(3);
+                break;
+        case 'V':
+                choix_classes(4);
+                break;
+        default:
+                break;
+        }
 }
 
 // start game
-void Start(classe classe_joueur,Enemie araignee ,Enemie squelette,Enemie slime)
+void Start(classe classe_joueur, Enemie araignee, Enemie squelette, Enemie slime,Inventory inv)
 {
+        ExtractInv();
+        printf("clef : d",inv.Key);
+        
+char charValue = inv.Gold + '0';
         FILE *file = fopen("SaveGame.txt", "r");
         int c = Position(1);
         int choose;
-        int validCharacterFound = 0; //Flag to indicate if a valid character is found in the file
+        int validCharacterFound = 0; // Flag to indicate if a valid character is found in the file
 
         printf("\033[1;33m"); // Activate yellow and bold text
         printf("*****************************\n");
@@ -1539,8 +1505,7 @@ void Start(classe classe_joueur,Enemie araignee ,Enemie squelette,Enemie slime)
         printf("*****************************\n");
         printf("\033[0m"); // Reset color and bold
 
-        SaveClass(&classe_joueur,araignee,squelette,slime);
-
+        SaveClass(&classe_joueur, araignee, squelette, slime);
 
         while ((c = fgetc(file)))
         {
@@ -1555,14 +1520,14 @@ void Start(classe classe_joueur,Enemie araignee ,Enemie squelette,Enemie slime)
                         validCharacterFound = 1;
                         break;
                 default:
-                           choix_langue();
+                        choix_langue();
                         break;
                 }
                 if (validCharacterFound == 1)
                 {
                         if (strcmp(Lfile, "Francais.txt") == 0)
                         {
-                                for (int i = 147; i <= 149; i++)
+                                for (int i = 338; i <= 340; i++)
                                 {
                                         lecture(i);
                                         printf("\n");
@@ -1570,7 +1535,7 @@ void Start(classe classe_joueur,Enemie araignee ,Enemie squelette,Enemie slime)
                         }
                         else if (strcmp(Lfile, "English.txt") == 0)
                         {
-                                for (int i = 147; i <= 149; i++)
+                                for (int i = 338; i <= 340; i++)
                                 {
                                         lecture(i);
                                         printf("\n");
@@ -1590,39 +1555,67 @@ void Start(classe classe_joueur,Enemie araignee ,Enemie squelette,Enemie slime)
                 switch (choose)
                 {
                 case 1:
-                        chooseDirection(classe_joueur,araignee,squelette,slime);
+                        chooseDirection(classe_joueur, araignee, squelette, slime);
                         break;
                 case 2:
                         choix_langue();
-                        
-                        
-                        lecture(3);
-                        scanf("%s",&Nom_j);
 
+                        lecture(3);
+                        FILE *file = fopen("SaveGame.txt", "r+");
+                        if (file == NULL)
+                        {
+                                printf("Erreur lors de l'ouverture du fichier.\n");
+                                return 1;
+                        }
+
+                        // Lire le contenu du fichier ligne par ligne
+                        char Nom_j[100];
+                        long int position = 0; // Pour stocker la position du curseur de fichier
+
+                        for (int i = 1; i <= 4; ++i)
+                        {
+                                position = ftell(file); // Enregistrer la position actuelle du curseur
+
+                                if (fgets(Nom_j, sizeof(Nom_j), file) == NULL)
+                                {
+                                        printf("Erreur lors de la lecture du fichier.\n");
+                                        fclose(file);
+                                        return 1;
+                                }
+
+                                if (i == 4)
+                                {
+                                        scanf("%s", Nom_j); // Lire la nouvelle valeur
+                                        fseek(file, position, SEEK_SET);
+                                        fprintf(file, "");
+                                        fprintf(file, "%s\n", Nom_j);
+
+                                        fseek(file, 0, SEEK_END);
+                                }
+                        }
+
+                        fclose(file);
 
                         lecture(5);
                         scanf("%d",&choose);
-
-
                         classe_joueur = choix_classes(choose);
                         chooseDirection(classe_joueur,araignee,squelette,slime);
                         break;
-                default:
+                default :
                         break;
                 }
         }
-
-        fclose(file);
 }
 
-//main
+// main
 int main(int argc, char *argv[])
 {
-        Enemie araignee,squelette,slime ;
-        classe classe_joueur ;
+        Enemie araignee, squelette, slime;
+        classe classe_joueur;
+        Inventory inv;
         squelette = setup_Enemie(1);
         araignee = setup_Enemie(2);
         slime = setup_Enemie(3);
         verif_fichier();
-        Start(classe_joueur ,araignee,squelette,slime);
+        Start(classe_joueur, araignee, squelette, slime,inv);
 }
