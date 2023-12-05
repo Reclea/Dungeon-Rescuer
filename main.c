@@ -1318,8 +1318,7 @@ void chooseDirection(classe joueur, Enemie araignee, Enemie squelette, Enemie sl
         char resultat = Position(3);
         int choixJoueur;
         int action;
-        while ((resultat = fgetc(file)))
-        {
+
                 if (resultat == 'H')
                 {
 
@@ -1331,6 +1330,7 @@ void chooseDirection(classe joueur, Enemie araignee, Enemie squelette, Enemie sl
                                 printf("1- Carte\n");
                                 printf("2- Aller à Droite\n");
                                 printf("3- Aller à Gauche\n");
+                                printf("4- Aller tout droit\n");
                                 printf("---------------------------------\n");
                         }
                         else
@@ -1369,6 +1369,10 @@ void chooseDirection(classe joueur, Enemie araignee, Enemie squelette, Enemie sl
 
                                 ecriture(3, 'C');
                                 chooseDirection(joueur, araignee, squelette, slime);
+                                break;
+                        case 4:
+                                ecriture(3,'L');
+                                chooseDirection(joueur,araignee,squelette,slime);
                                 break;
                         default:
                                 break;
@@ -1413,9 +1417,86 @@ void chooseDirection(classe joueur, Enemie araignee, Enemie squelette, Enemie sl
                         default:
                                 break;
                         }
+                }else if (resultat == 'L'){
+                         if (strcmp(Lfile, "Francais.txt") == 0)
+                        {
+                                printf("\n---------------------------------\n");
+                                printf("Que voulez-vous faire ?\n");
+                                printf("1- Carte\n");
+                                printf("2- Aller dans le Hall\n");
+                                printf("3- Aller a droite\n");
+                                printf("4- Aller a gauche\n");
+                                printf("5- Aller tout droit\n");
+                                printf("---------------------------------\n");
+                        }
+                        else
+                        {
+                                printf("\n---------------------------------\n");
+                                printf("You are in Corridor\n");
+                                printf("What do you want to do?\n");
+                                printf("1- Map\n");
+                                printf("2- Go to the Hall\n");
+                                printf("3- Go to the right");
+                                printf("4- Go to the left");
+                                printf("5- go straight");
+                                printf("---------------------------------\n");
+                        }
+                        scanf("%d", &action);
+
+                        switch (action)
+                        {
+                        case 1:
+                                afficheMap(joueur, araignee, squelette, slime);
+                                break;
+                        case 2:
+                                ecriture(3, 'H');
+                                chooseDirection(joueur, araignee, squelette, slime);
+                        case 3 :
+                                ecriture(3,'P');
+                                chooseDirection(joueur, araignee, squelette, slime);
+                        case 4 : 
+                                ecriture(3,'V');
+                                chooseDirection(joueur, araignee, squelette, slime);
+                        case 5 :
+                                ecriture(3,'M');
+                                chooseDirection(joueur, araignee, squelette, slime);
+                        default:
+                                break;
+                        }
+                }else if(resultat == 'D'){
+                        printf("fin");
+                }else{
+                         if (strcmp(Lfile, "Francais.txt") == 0)
+                        {
+                                printf("\n---------------------------------\n");
+                                printf("Que voulez-vous faire ?\n");
+                                printf("1- Carte\n");
+                                printf("2- Retourner  dans le Couloir \n");
+                                printf("---------------------------------\n");
+                        }
+                        else
+                        {
+                                printf("\n---------------------------------\n");
+                                printf("You are in Corridor\n");
+                                printf("What do you want to do?\n");
+                                printf("1- Map\n");
+                                printf("2- go straight");
+                                printf("---------------------------------\n");
+                        }
+                        scanf("%d", &action);
+
+                        switch (action)
+                        {
+                        case 1:
+                                afficheMap(joueur, araignee, squelette, slime);
+                        case 2:
+                                ecriture(3, 'L');
+                                chooseDirection(joueur, araignee, squelette, slime);
+                        default:
+                                break;
+                        }
                 }
         }
-}
 
 // Display the map
 void afficheMap(classe joueur, Enemie araignee, Enemie squelette, Enemie slime)
@@ -1541,7 +1622,6 @@ char charValue = inv.Gold + '0';
                                         printf("\n");
                                 }
                         }
-
                         break;
                 }
         }
