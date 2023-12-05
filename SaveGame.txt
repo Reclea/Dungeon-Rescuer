@@ -1,1 +1,19 @@
-E
+F
+P
+M
+
+------------------------------
+piece
+0
+potion vie
+4
+Potion célérité
+1
+Potion Resistance
+1
+Potion Invisibilité
+5
+clef
+1
+costume de monstre
+0
