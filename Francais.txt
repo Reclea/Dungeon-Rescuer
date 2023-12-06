@@ -343,10 +343,16 @@ erreur ID Classe
 ==========================DIRECTION==================
 ---------------------------------
 Que voulez-vous faire ?
+Vous etes dans le Hall
+Carte
 Aller a gauche
 Aller a droite
 Aller tout droit
 Retourner au Hall
+Aller dans le Hall
+Retourner dans le Couloir
+La porte est fermé, Il faut trouvé une clef pour ourvrir cette porte
+la porte est fermé, mais vous avez trouvé la clef !
 =====================================================
 
 
