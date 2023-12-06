@@ -340,6 +340,20 @@ Class ID error
 3- Quit
 ======================================================
 
+==========================DIRECTION==================
+---------------------------------
+What do you want to do?
+You are in the Hall
+Map
+Go left
+Go right
+Go straight
+Return to the Hall
+Go to the Hall
+Go back to the Corridor
+The door is locked. You need to find a key to open it.
+The door is locked, but you have found the key!
+=====================================================
 
 
 
