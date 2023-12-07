@@ -39,7 +39,7 @@ l'histoire de
 ========================combat===========================
 
 vous avez infliger 
-
+Vous ne trouvez pas votre enemie
 le monstre vous inflige
 
 degats
@@ -75,6 +75,20 @@ que voulez vous faire ?
 
 Reussite
 Echec
+vous subissé 2 degats de poison!
+le slime projete des goutelette dans les air certaine vous touches , vous remarquer que la texture visqueuse commence a vous ronger (empoisonée pendant 4 tours);
+le slime commence a se liquéfier et disparait dans les creux de la roches.
+le slime reapparait derrier vous 
+et vous attaque
+mais ne vous vois pas 
+
+
+
+================combat boss=====================
+
+ton heure est venu miserable humain ! 
+tu est enflammer tu prend 3 degats de feux
+le dragon crache un soufle de flamme (vous etes enflammer pendant 3 tours) 
 
 
 
@@ -85,23 +99,8 @@ Echec
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Qu'elle est votre action ?
+vous demarez votre combat empoisonée
 ===================action voleur=====================
 
 =====================================================
@@ -139,6 +138,7 @@ vous vous prepare pour l'attaque
 
 
 
+
 ===================action barbare=====================
 
 =====================================================
@@ -157,7 +157,6 @@ le crie n'as aucun effet
 vous vous soignez
 
 vous vous prepare pour l'attaque 
-
 
 
 
@@ -268,6 +267,7 @@ vous vous prepare pour l'attaque
 
 
 
+
 =====================================================
 vos PV:
 PV du monstre:
@@ -290,7 +290,7 @@ monstre vaincue
 
 joueur vaincue
 
-
+vous trouvez une clef sur le sol 
 
 
 
@@ -353,14 +353,14 @@ Aller dans le Hall
 Retourner dans le Couloir
 La porte est fermé, Il faut trouvé une clef pour ourvrir cette porte
 la porte est fermé, mais vous avez trouvé la clef !
+Vous etes dans une salle completement vide
+vous etes dans une salle remplie de toile d'araigné 
+
+
+
 =====================================================
-
-
-
-
-
-
-
+une flechette sort du mur en face de vous mais vous parvenez a l'evité a temp 
+une flechette sort du mur en face de vous et se plante dans votre bras vous commencer a avoir des vertige (commencez le prochain combat empoissoné pendant 3 tours)
 
 ===========================CARTE======================
 
