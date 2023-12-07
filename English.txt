@@ -36,11 +36,10 @@ the story of...
 
 
 
-
 ========================combat===========================
 
 You inflicted
-
+you can't find your enemie
 The monster inflicts 
 
 damage.
@@ -76,6 +75,20 @@ What do you want to do?
 
 succeed
 failed
+you take 2 poison damage
+the slime throw drops in the air some touch you , you see that the slimy texture start to eat you (poison for 4 turn)
+the slime turn into liquide and disappear into the rock cracks
+the slime rappear behind you 
+and attack 
+but doesn't see you
+
+
+
+================boss=====================
+
+your time has come pity human !
+your in flamme , you take 3 damage of fire 
+the dragon breath fire (your in fire for 3 turns)
 
 
 
@@ -86,22 +99,8 @@ failed
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+What's your action ?
+you start you batle poisonned
 ===================thief's action=====================
 
 ======================================================
@@ -268,6 +267,7 @@ You prepare for the attack.
 
 
 
+
 =====================================================
 Your HP:
 Monster's HP:
@@ -290,7 +290,7 @@ Monster defeated
 
 Player defeated
 
-
+you found a key on the floor
 
 
 
@@ -353,29 +353,28 @@ Go to the Hall
 Go back to the Corridor
 The door is locked. You need to find a key to open it.
 The door is locked, but you have found the key!
+your in an empty room
+your in a room full of spider web 
+
+
 =====================================================
+an arrow come out of the wall in front of you but you manage to dodge it 
+an arrwo come out of the wall in front of you and stab you in the arm , you start to feel dizzy (begin you next batle poisonned 3 turns)
 
-
-
-
-
-
-
-
-===========================CARTE======================
+===========================MAP=======================
 
 #########
 #        #      ############//############################
-#  Room  #      #                  #         #           #
+# Piece  #      #                  #         #           #
 #   2    #######                   ###########           #
-#        /     /        Hall       /         /   Room 1  #
+#        /     /        Hall       /         /  Piece 1  #
 #        #######                   ###########           #
 #########       #                  #         #           #
                 ##########//##############################
                          #  #
             ##############  #############################
             #            #  #                           #
-            #  Room 3    /  /         Room 4            #################
+            #  Piece 3   /  /         piece 4           #################
             #            #  #                                           #
             ##############  #############################################
                          #//#
@@ -384,7 +383,7 @@ The door is locked, but you have found the key!
             #                            #
             #                            #
             #                            #
-            #           Room 5          #
+            #           Piece 5          #
             #                            #
             #                            #
             #                            #
