@@ -9,8 +9,8 @@
 
 const char *SaveGame = "SaveGame.txt";
 const char *PlayerInfo = "PlayerInfo.txt";
-const char *Histoire = "Histoire.txt";
-const char *Story = "Story.txt";
+const char *Francais = "Francais.txt";
+const char *English = "English.txt";
 char *language;
 const int des = 21;
 
@@ -263,8 +263,8 @@ void verif_fichier()
 {
     // open the file
     FILE *in_save = fopen(SaveGame, "r");
-    FILE *in_histoire = fopen(Histoire, "r");
-    FILE *in_story = fopen(Story, "r");
+    FILE *in_histoire = fopen(Francais, "r");
+    FILE *in_story = fopen(English, "r");
 
     // look and create file
 
@@ -712,13 +712,7 @@ int combat(int nbMobs, Enemie type, classe joueur)
           multiplicateur_j = 1;
 
     lecture(72);
-    
-    if (Position(12)!= '0')
-    {
-        lecture(103);
-        j_empoisone = 4;
-    }
-        
+       
     
         do
         {
