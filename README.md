@@ -1,4 +1,4 @@
-# ⚔️ C-Adventure RPG
+# ⚔️ Dungeon-Rescuer
 
 ### Quick Description
 **FR :** Un RPG textuel en C proposant des combats au tour par tour, une gestion d'inventaire et un système de narration multilingue basé sur des fichiers.  
